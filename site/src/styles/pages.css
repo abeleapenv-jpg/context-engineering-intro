@@ -1,0 +1,452 @@
+/* QUIETFIELD PAGES
+ * Home, stage index, scenario, 404. Narrative path layout; no grids of
+ * cards, no gradients, hairline depth only.
+ */
+
+/* ------------------------------ shared chrome ------------------------------ */
+
+.qf-wordmark {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.qf-wordmark svg {
+  width: 56px;
+  height: 56px;
+}
+
+.qf-wordmark-text {
+  font-size: 22px;
+}
+
+.qf-breadcrumbs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 34px;
+}
+
+.qf-crumb {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.qf-tick {
+  display: inline-flex;
+  align-items: center;
+}
+
+.qf-crumb-link {
+  text-decoration: none;
+}
+
+.qf-crumb-link:hover {
+  color: var(--qf-cream);
+}
+
+.qf-crumb-current {
+  color: var(--qf-cream);
+}
+
+/* Completion mark: a quiet rust square (shape, not text). */
+.qf-done-mark {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border: 1px solid var(--qf-tan);
+  border-radius: 1px;
+  flex: none;
+}
+
+.qf-done-mark-on {
+  border-color: var(--qf-rust);
+  background: var(--qf-rust);
+}
+
+.qf-footer {
+  margin-top: 96px;
+  padding-top: 26px;
+  border-top: var(--qf-hairline);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* ------------------------------ home ------------------------------ */
+
+.qf-home {
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+}
+
+.qf-home-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  padding: 48px 0 8px;
+  text-align: center;
+}
+
+.qf-home-monogram {
+  width: 84px;
+  height: 84px;
+}
+
+.qf-home-monogram svg {
+  width: 100%;
+  height: 100%;
+}
+
+.qf-home-rule {
+  width: min(240px, 60vw);
+}
+
+/* The logo's thin rule draws itself once, on arrival (spec §4.3). */
+.qf-rule-draw-anim {
+  animation: qf-rule-draw 1.6s cubic-bezier(0.22, 0.61, 0.36, 1) 300ms both;
+}
+
+@keyframes qf-rule-draw {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.qf-home-title {
+  font-size: clamp(32px, 6vw, 52px);
+  letter-spacing: 0.3em;
+  padding-left: 0.3em;
+}
+
+.qf-home-steps {
+  max-width: 560px;
+}
+
+.qf-home-intro {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 22px 0;
+  border-top: var(--qf-hairline);
+  border-bottom: var(--qf-hairline);
+}
+
+.qf-home-progress {
+  align-self: flex-start;
+}
+
+/* One vertical narrative path, grouped by life stage (§3.6.1 #6). */
+.qf-home-stages {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.qf-stage-card {
+  padding: 24px 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Glass cards brighten their border on hover: real information
+   (this is a navigable step), never decoration (§3.6.1 #28). */
+.qf-stage-card:hover {
+  border-color: var(--qf-glass-border-hover);
+}
+
+.qf-stage-head {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  justify-content: space-between;
+}
+
+.qf-stage-name {
+  font-size: 24px;
+  flex: 1;
+}
+
+.qf-stage-head:hover .qf-stage-name {
+  color: var(--qf-tan);
+}
+
+.qf-stage-motion {
+  font-size: 16px;
+  color: var(--qf-cream);
+  opacity: 0.85;
+}
+
+/* ------------------------------ stage index ------------------------------ */
+
+.qf-stage-header {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 40px;
+}
+
+.qf-stage-title {
+  font-size: clamp(28px, 5vw, 44px);
+}
+
+/* The vertical narrative path. */
+.qf-stage-path {
+  display: flex;
+  flex-direction: column;
+}
+
+.qf-path-step {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  padding: 22px 6px;
+  border-bottom: var(--qf-hairline);
+  text-decoration: none;
+}
+
+.qf-path-step:first-child {
+  border-top: var(--qf-hairline);
+}
+
+.qf-path-index {
+  width: 92px;
+  flex: none;
+}
+
+.qf-path-title {
+  font-size: 20px;
+  flex: 1;
+}
+
+.qf-path-step:hover .qf-path-title {
+  color: var(--qf-tan);
+}
+
+/* ------------------------------ scenario ------------------------------ */
+
+.qf-scenario-header {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 30px;
+}
+
+/* Top headers get the token-derived glass treatment (Amendment A). */
+.qf-scenario-header,
+.qf-stage-header {
+  padding: 22px 24px;
+  background: var(--qf-glass-fill);
+  -webkit-backdrop-filter: blur(var(--qf-glass-blur));
+  backdrop-filter: blur(var(--qf-glass-blur));
+  border: 1px solid var(--qf-glass-border);
+  border-radius: var(--qf-radius);
+}
+
+.qf-scenario-title-row {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.qf-scenario-title {
+  font-size: clamp(26px, 4.6vw, 40px);
+}
+
+.qf-canonical-tag {
+  border: var(--qf-hairline);
+  border-radius: var(--qf-radius);
+  padding: 3px 8px;
+}
+
+.qf-done-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.qf-stage-language {
+  max-width: 620px;
+}
+
+.qf-psych-tags {
+  align-self: flex-start;
+}
+
+.qf-context {
+  margin-top: 30px;
+  padding: 22px 0;
+  border-top: var(--qf-hairline);
+}
+
+.qf-choices {
+  margin-top: 30px;
+}
+
+.qf-choices-label {
+  margin-bottom: 16px;
+}
+
+.qf-choice-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+@media (max-width: 640px) {
+  .qf-choice-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.qf-choice {
+  display: flex;
+  align-items: stretch;
+  gap: 14px;
+  text-align: left;
+  border-radius: var(--qf-radius);
+  padding: 16px;
+  /* Glass choice cards (Amendment A) with hover border brightening:
+     the brightening previews the response, it is information (§3.6.1 #28). */
+  background: var(--qf-glass-fill);
+  -webkit-backdrop-filter: blur(var(--qf-glass-blur));
+  backdrop-filter: blur(var(--qf-glass-blur));
+  border: 1px solid var(--qf-glass-border);
+  transition:
+    border-color 300ms linear,
+    background-color 300ms linear;
+}
+
+.qf-choice:hover,
+.qf-choice:focus-visible {
+  border-color: var(--qf-glass-border-hover);
+}
+
+.qf-choice:disabled {
+  cursor: default;
+  opacity: 0.6;
+}
+
+/* The letter block. When chosen, it becomes the single rust point of
+   emphasis: the resolved focal point of the scene (§3.5). */
+.qf-choice-letter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  flex: none;
+  border: 1px solid var(--qf-tan);
+  border-radius: var(--qf-radius);
+  color: var(--qf-cream);
+}
+
+.qf-choice-chosen {
+  border-color: var(--qf-cream);
+}
+
+.qf-choice-chosen .qf-choice-letter {
+  background: var(--qf-rust);
+  border-color: var(--qf-rust);
+  color: var(--qf-cream);
+}
+
+.qf-choice-text {
+  flex: 1;
+  font-size: 17px;
+}
+
+/* The archetype word: real information revealed on hover/focus
+   (§3.6.1 #28) - what kind of response this choice is. */
+.qf-choice-archetype {
+  align-self: center;
+  opacity: 0;
+  transition: opacity 300ms linear;
+  flex: none;
+}
+
+.qf-choice:hover .qf-choice-archetype,
+.qf-choice:focus-visible .qf-choice-archetype,
+.qf-choice-chosen .qf-choice-archetype {
+  opacity: 1;
+}
+
+.qf-consequence {
+  margin-top: 34px;
+  border-top: var(--qf-hairline);
+  padding-top: 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.qf-consequence-arch {
+  color: var(--qf-tan);
+}
+
+.qf-consequence-note {
+  margin-top: 6px;
+}
+
+.qf-consequence-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 22px;
+  align-items: center;
+  margin-top: 12px;
+}
+
+/* In-stage path: numbered steps, canonical marked with rust square. */
+.qf-scenario-nav {
+  display: flex;
+  gap: 12px;
+  margin-top: 48px;
+  align-items: center;
+}
+
+.qf-scenario-nav a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border: 1px solid var(--qf-tan);
+  border-radius: var(--qf-radius);
+  color: var(--qf-tan);
+}
+
+.qf-scenario-nav a:hover {
+  border-color: var(--qf-cream);
+  color: var(--qf-cream);
+}
+
+.qf-scenario-nav .qf-scenario-nav-current {
+  border-color: var(--qf-cream);
+  color: var(--qf-cream);
+}
+
+.qf-scenario-nav .qf-scenario-nav-canonical {
+  background: var(--qf-rust);
+  border-color: var(--qf-rust);
+  color: var(--qf-cream);
+}
+
+/* ------------------------------ 404 ------------------------------ */
+
+.qf-notfound {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 26px;
+  padding-top: 96px;
+}

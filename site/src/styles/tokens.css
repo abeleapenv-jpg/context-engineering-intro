@@ -1,0 +1,35 @@
+/*
+ * QUIETFIELD DESIGN TOKENS
+ * Source of truth: docs/quietfield_3d_animation_layer.md §3.5 (pixel-sampled
+ * Musterfield Labs values). Exactly four tokens exist. Nothing outside them
+ * ships anywhere in the site.
+ *
+ * Contrast rules that constrain usage (computed, see spec §3.5.1):
+ *   - rust on ink fails for any text (2.56:1). Rust is shapes only.
+ *   - tan on ink is UI/large-text only: >=18px regular, >=14px bold,
+ *     or non-text elements (rule lines, borders).
+ *   - body copy on ink is always cream.
+ */
+:root {
+  --qf-ink: #1e1e17;
+  --qf-cream: #efe7db;
+  --qf-rust: #904a30;
+  --qf-tan: #848177;
+
+  /* Geometry guardrails (spec §3.6): hairline depth instead of shadows,
+     near-sharp corners everywhere. */
+  --qf-hairline: 1px solid var(--qf-tan);
+  --qf-radius: 2px;
+
+  /* Glassmorphism (Amendment A, token-derived): ink fill at 65%,
+     cream border at 8%, cream border brightening at 32% on hover.
+     Pure white never appears; radius stays <= 2px. */
+  --qf-glass-fill: rgba(30, 30, 23, 0.65);
+  --qf-glass-border: rgba(239, 231, 219, 0.08);
+  --qf-glass-border-hover: rgba(239, 231, 219, 0.32);
+  --qf-glass-blur: 12px;
+
+  --qf-font-display: 'Archivo Variable', 'Archivo', 'Arial Narrow', sans-serif;
+  --qf-font-body: 'Fraunces Variable', 'Fraunces', Georgia, 'Times New Roman',
+    serif;
+}

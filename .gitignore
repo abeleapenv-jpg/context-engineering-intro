@@ -3,3 +3,9 @@ venv_linux
 __pycache__
 .ruff_cache
 .pytest_cache
+
+# node
+site/node_modules/
+site/dist/
+site/.vite/
+site/coverage/
