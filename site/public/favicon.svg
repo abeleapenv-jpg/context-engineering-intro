@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Quietfield / Musterfield Labs mark: M monogram, rust base-notch.
+       §7.5 #19: checked at 16x16, the notch stays one clean rust square. -->
+  <rect width="64" height="64" fill="#1e1e17"/>
+  <path d="M6 6 L6 58 L58 58 L58 26 L36 26 L36 42 L26 42 L26 22 L42 22 L42 6 Z" fill="#efe7db"/>
+  <rect x="26" y="26" width="8" height="8" fill="#904a30"/>
+</svg>

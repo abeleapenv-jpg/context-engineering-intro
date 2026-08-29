@@ -1,0 +1,4 @@
+/* QUIETFIELD GLOBAL STYLES
+ * Entry point pulls in tokens, base, scene, entry, and page styles.
+ * (Kept as the cascade root; all rules live in src/styles/*.)
+ */

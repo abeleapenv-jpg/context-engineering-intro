@@ -1,0 +1,290 @@
+/* QUIETFIELD BASE
+ * Flat ink field, cream text, tan UI, rust as a single signal point.
+ * No gradients, no shadows, no glass, no rounding beyond --qf-radius.
+ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background: var(--qf-ink);
+  color: var(--qf-cream);
+}
+
+body {
+  min-height: 100vh;
+  font-family: var(--qf-font-body);
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--qf-cream);
+  background: var(--qf-ink);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--qf-cream);
+  color: var(--qf-ink);
+}
+
+a {
+  color: var(--qf-cream);
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+:focus-visible {
+  outline: 1px solid var(--qf-cream);
+  outline-offset: 3px;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+/* ------------------------------ typography ------------------------------ */
+
+.qf-display {
+  font-family: var(--qf-font-display);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--qf-cream);
+}
+
+/* UI labels: tan on ink is only compliant at >=14px bold / >=18px regular
+   (spec §3.5.1). These classes lock that in. */
+.qf-label {
+  font-family: var(--qf-font-display);
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.5;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--qf-tan);
+}
+
+.qf-tagline {
+  font-family: var(--qf-font-display);
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 1.6;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--qf-tan);
+}
+
+.qf-body {
+  font-family: var(--qf-font-body);
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--qf-cream);
+}
+
+/* ------------------------------ surfaces ------------------------------ */
+
+/* Flat surfaces. Elevation is expressed with the 1px tan hairline, never
+   a shadow (spec §3.6.1 #5). Corners capped at 2px (spec §3.6.1 #19). */
+.qf-card {
+  border: var(--qf-hairline);
+  border-radius: var(--qf-radius);
+  background: transparent;
+}
+
+/* ------------------------------ buttons ------------------------------ */
+
+.qf-btn {
+  display: inline-block;
+  font-family: var(--qf-font-display);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--qf-cream);
+  border: var(--qf-hairline);
+  border-radius: var(--qf-radius);
+  padding: 12px 22px;
+  background: transparent;
+  transition: border-color 300ms linear;
+  text-decoration: none;
+}
+
+/* Hover states must reveal real information (spec §3.6.1 #28): here the
+   border solidifying communicates "this is pressable". Nothing else moves. */
+.qf-btn:hover {
+  border-color: var(--qf-cream);
+}
+
+.qf-btn-quiet {
+  display: inline-block;
+  font-family: var(--qf-font-display);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--qf-tan);
+  border: none;
+  border-bottom: var(--qf-hairline);
+  border-radius: 0;
+  padding: 6px 2px;
+  background: transparent;
+  transition:
+    color 300ms linear,
+    border-color 300ms linear;
+}
+
+.qf-btn-quiet:hover {
+  color: var(--qf-cream);
+  border-bottom-color: var(--qf-cream);
+}
+
+/* ------------------------------ glass (Amendment A) ------------------------------ */
+
+/* Token-derived glassmorphism, studio-approved override of §3.6.1 #8.
+   Fill = ink at 65%, border = cream at 8%, blur 12px. Corners stay at
+   the 2px cap (#19); pure white never appears (#3/#4 intact). */
+.qf-glass {
+  background: var(--qf-glass-fill);
+  -webkit-backdrop-filter: blur(var(--qf-glass-blur));
+  backdrop-filter: blur(var(--qf-glass-blur));
+  border: 1px solid var(--qf-glass-border);
+  border-radius: var(--qf-radius);
+  transition:
+    border-color 300ms linear,
+    background-color 300ms linear;
+}
+
+/* ------------------------------ fades ------------------------------ */
+
+/* The only permitted entrance for text and marks: opacity. No bounce, no
+   scale pop (spec §4.2). */
+.qf-fade-in {
+  opacity: 0;
+  transition: opacity 900ms linear;
+}
+
+.qf-fade-in.qf-fade-show {
+  opacity: 1;
+}
+
+.qf-instant,
+.qf-instant * {
+  transition: none !important;
+}
+
+/* The logo's thin rule "draws itself": scaleX from the left, quietly.
+   Clarity arriving, not an ad dropping (spec §4.2 beat 5). */
+.qf-draw-rule {
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  transition:
+    opacity 900ms linear,
+    transform 1400ms cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.qf-draw-rule.qf-fade-show {
+  transform: scaleX(1);
+}
+
+/* ------------------------------ layout primitives ------------------------------ */
+
+.qf-wrap {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 28px 22px 96px;
+}
+
+/* The 3D canvas fills its frame; the frame itself stays in normal flow
+   between the header and the context copy, so figures never overlap
+   choice cards or titles (user-requested clearance guarantee). */
+.qf-canvas-frame {
+  position: relative;
+  overflow: hidden;
+}
+
+.qf-canvas-frame canvas {
+  display: block;
+}
+
+/* Loading state for 3D scenes (§3.6.1 #21): the rule-line ornament. */
+.qf-loading-frame {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.qf-loading {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.qf-rule-loading {
+  display: inline-block;
+  width: min(220px, 60vw);
+}
+
+.qf-rule-loading svg {
+  width: 100%;
+  height: 100%;
+  transform-origin: left center;
+  animation: qf-rule-load 1.4s ease-in-out infinite alternate;
+}
+
+@keyframes qf-rule-load {
+  from {
+    transform: scaleX(0.12);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.qf-rule-block {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  border: none;
+  padding: 0;
+}
+
+.qf-rule-block::after {
+  content: '';
+  flex: 1;
+  border-top: var(--qf-hairline);
+}
+
+/* ------------------------------ reduced motion ------------------------------ */
+
+/* Camera movement and particle motion become instant state crossfades
+   (spec §3, §4.3). Text timing is unchanged; animation is not. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001s !important;
+  }
+}

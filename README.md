@@ -1,296 +1,111 @@
-# Context Engineering Template
+# Context Engineering Workspace
 
-A comprehensive template for getting started with Context Engineering - the discipline of engineering context for AI coding assistants so they have the information necessary to get the job done end to end.
+Two projects live in this repository:
 
-> **Context Engineering is 10x better than prompt engineering and 100x better than vibe coding.**
+- **[Quietfield](#quietfield)** (`site/`, `docs/quietfield_3d_animation_layer.md`) — an interactive site teaching social observation through 25 scenarios, with a 2D/3D semantic camera system.
+- **[Animate UI](#animate-ui)** (`animate-ui/`) — an open-source component library + docs site modeled on the shadcn/ui paradigm: React, TypeScript, Tailwind CSS, and Motion, distributed as editable source via a registry and CLI.
 
-## 🚀 Quick Start
+The remaining directories are the original Context Engineering template (PRP workflow, Claude Code guides, use-cases), kept for reference.
 
-```bash
-# 1. Clone this template
-git clone https://github.com/coleam00/Context-Engineering-Intro.git
-cd Context-Engineering-Intro
+---
 
-# 2. Set up your project rules (optional - template provided)
-# Edit CLAUDE.md to add your project-specific guidelines
+# QUIETFIELD
 
-# 3. Add examples (highly recommended)
-# Place relevant code examples in the examples/ folder
+**Quietfield** is an interactive website that teaches social observation and interpretation through 25 life-stage scenarios. Its thesis:
 
-# 4. Create your initial feature request
-# Edit INITIAL.md with your feature requirements
+> You cannot always control what other people do. You can control how carefully you observe, interpret, communicate, and choose.
 
-# 5. Generate a comprehensive PRP (Product Requirements Prompt)
-# In Claude Code, run:
-/generate-prp INITIAL.md
+The site's entry sequence is the first scenario, not a logo animation: one real round of Notice → Pause → Widen → Choose before any navigation appears. Every scenario then plays out the same loop with camera movement that carries meaning: hard cuts read as impulse, eased moves as deliberation, a widening frame as recontextualization.
 
-# 6. Execute the PRP to implement your feature
-# In Claude Code, run:
-/execute-prp PRPs/your-feature-name.md
-```
+A Musterfield Labs project.
 
-## 📚 Table of Contents
+## The spec
 
-- [What is Context Engineering?](#what-is-context-engineering)
-- [Template Structure](#template-structure)
-- [Step-by-Step Guide](#step-by-step-guide)
-- [Writing Effective INITIAL.md Files](#writing-effective-initialmd-files)
-- [The PRP Workflow](#the-prp-workflow)
-- [Using Examples Effectively](#using-examples-effectively)
-- [Best Practices](#best-practices)
+Everything is governed by the **3D Animation & Entry Sequence Layer** document, kept verbatim in:
 
-## What is Context Engineering?
+- [`docs/quietfield_3d_animation_layer.md`](docs/quietfield_3d_animation_layer.md)
 
-Context Engineering represents a paradigm shift from traditional prompt engineering:
+It defines the 2D/3D semantic camera language, the four-token brand system with computed contrast rules, the entry sequence's five beats, per-scenario camera/light directives for all 25 scenarios, and a recommended build order. `CLAUDE.md` summarizes the hard rules for coding sessions; the spec wins on any disagreement.
 
-### Prompt Engineering vs Context Engineering
+## What exists today
 
-**Prompt Engineering:**
-- Focuses on clever wording and specific phrasing
-- Limited to how you phrase a task
-- Like giving someone a sticky note
+Per the spec's §1.1 build order, steps 1–3 are in place: the 2D walking skeleton, the 3D entry sequence, and the 3D stage sets.
 
-**Context Engineering:**
-- A complete system for providing comprehensive context
-- Includes documentation, examples, rules, patterns, and validation
-- Like writing a full screenplay with all the details
+- **Entry sequence "Threshold"** — all five beats (§4.2), skip from beat 0, plays once per session. Rendered in Three.js (R3F) with GSAP when WebGL is available; the 2D/SVG version stays the fallback. `prefers-reduced-motion` crossfades throughout.
+- **All 25 scenarios authored and playable** — five life stages (Playground, Classroom, Café, Meeting Room, Dinner Table), each with a canonical scenario plus four variants, four choices each (A/B/C/D), per-choice consequence beats, and §3.7.1 archetype tags (reactive / avoidant / clarifying / regulated).
+- **The shared camera contract in 2D and 3D** — both renderers consume the same `CameraDirective` values (§3.7.2). 2D: CSS transform camera + background blur DOF. 3D: GSAP-driven rig (hard cut = instant set, deliberation = `power3.inOut`, avoidant = drift) with the same meanings.
+- **One 3D stage set per life stage** shared by all 25 scenarios (Amendment A.4): ceramic-figure materials (roughness 0.6 / metalness 0.08), 64×64-segment heads, ACES tone mapping at 0.85, ink fog, one soft-shadow key light + ambient + cold tan rim, figures framed in the upper 55–60% of the viewport.
+- **Living detail**: sine.inOut idle breathing (torso scale + micro head tilt, never bounce), choice-hover head-turns (power2.out) and camera previews, beat-4 double-exposure ghosts in the entry.
+- **Progress persistence** — choice log and completion survive refresh, stored client-side only (no cookies, no backend).
+- **The guardrail system** from §3.6 enforced by convention and tests (tokens, contrast ratios, camera grammar, voice rules, palette scan). Glassmorphism is the one recorded override (Amendment A, §9 of the spec), token-derived only.
 
-### Why Context Engineering Matters
+Still to come: per-scenario 3D key-beat specials (§5 directive blocks) and the remaining §7.5 launch items. Tracked in [`TASK.md`](TASK.md).
 
-1. **Reduces AI Failures**: Most agent failures aren't model failures - they're context failures
-2. **Ensures Consistency**: AI follows your project patterns and conventions
-3. **Enables Complex Features**: AI can handle multi-step implementations with proper context
-4. **Self-Correcting**: Validation loops allow AI to fix its own mistakes
-
-## Template Structure
+## Repository layout
 
 ```
 context-engineering-intro/
-├── .claude/
-│   ├── commands/
-│   │   ├── generate-prp.md    # Generates comprehensive PRPs
-│   │   └── execute-prp.md     # Executes PRPs to implement features
-│   └── settings.local.json    # Claude Code permissions
-├── PRPs/
-│   ├── templates/
-│   │   └── prp_base.md       # Base template for PRPs
-│   └── EXAMPLE_multi_agent_prp.md  # Example of a complete PRP
-├── examples/                  # Your code examples (critical!)
-├── CLAUDE.md                 # Global rules for AI assistant
-├── INITIAL.md               # Template for feature requests
-├── INITIAL_EXAMPLE.md       # Example feature request
-└── README.md                # This file
+├── docs/
+│   └── quietfield_3d_animation_layer.md   # governing spec + Amendment A (§9)
+├── site/                                  # the application
+│   ├── src/
+│   │   ├── lib/            # camera contract, semantics, store, tokens, entry beats
+│   │   ├── three/          # 3D layer: figures, stages, lighting, poses, camera rig, effects
+│   │   ├── components/     # SceneViewport (2D/3D switch), SceneFrame, stages, marks, controls
+│   │   ├── content/        # scenarios per life stage, copy (authored from §5 directives)
+│   │   ├── pages/          # home, stage index, scenario, 404
+│   │   └── styles/         # tokens, base, scene, entry, pages CSS
+│   └── tests/              # vitest suites (colocated with src)
+├── TASK.md                                # session handoff + roadmap
+└── CLAUDE.md                              # agent rules for this project
 ```
 
-This template doesn't focus on RAG and tools with context engineering because I have a LOT more in store for that soon. ;)
+(The remainder of this repository is the original Context Engineering template — PRP workflow, Claude Code guides, use-cases — kept as-is for reference.)
 
-## Step-by-Step Guide
-
-### 1. Set Up Global Rules (CLAUDE.md)
-
-The `CLAUDE.md` file contains project-wide rules that the AI assistant will follow in every conversation. The template includes:
-
-- **Project awareness**: Reading planning docs, checking tasks
-- **Code structure**: File size limits, module organization
-- **Testing requirements**: Unit test patterns, coverage expectations
-- **Style conventions**: Language preferences, formatting rules
-- **Documentation standards**: Docstring formats, commenting practices
-
-**You can use the provided template as-is or customize it for your project.**
-
-### 2. Create Your Initial Feature Request
-
-Edit `INITIAL.md` to describe what you want to build:
-
-```markdown
-## FEATURE:
-[Describe what you want to build - be specific about functionality and requirements]
-
-## EXAMPLES:
-[List any example files in the examples/ folder and explain how they should be used]
-
-## DOCUMENTATION:
-[Include links to relevant documentation, APIs, or MCP server resources]
-
-## OTHER CONSIDERATIONS:
-[Mention any gotchas, specific requirements, or things AI assistants commonly miss]
-```
-
-**See `INITIAL_EXAMPLE.md` for a complete example.**
-
-### 3. Generate the PRP
-
-PRPs (Product Requirements Prompts) are comprehensive implementation blueprints that include:
-
-- Complete context and documentation
-- Implementation steps with validation
-- Error handling patterns
-- Test requirements
-
-They are similar to PRDs (Product Requirements Documents) but are crafted more specifically to instruct an AI coding assistant.
-
-Run in Claude Code:
-```bash
-/generate-prp INITIAL.md
-```
-
-**Note:** The slash commands are custom commands defined in `.claude/commands/`. You can view their implementation:
-- `.claude/commands/generate-prp.md` - See how it researches and creates PRPs
-- `.claude/commands/execute-prp.md` - See how it implements features from PRPs
-
-The `$ARGUMENTS` variable in these commands receives whatever you pass after the command name (e.g., `INITIAL.md` or `PRPs/your-feature.md`).
-
-This command will:
-1. Read your feature request
-2. Research the codebase for patterns
-3. Search for relevant documentation
-4. Create a comprehensive PRP in `PRPs/your-feature-name.md`
-
-### 4. Execute the PRP
-
-Once generated, execute the PRP to implement your feature:
+## Develop
 
 ```bash
-/execute-prp PRPs/your-feature-name.md
+cd site
+npm install
+npm run dev      # http://localhost:5173
+npm test         # vitest
+npm run lint     # oxlint
+npm run build    # tsc + vite (production build in dist/)
 ```
 
-The AI coding assistant will:
-1. Read all context from the PRP
-2. Create a detailed implementation plan
-3. Execute each step with validation
-4. Run tests and fix any issues
-5. Ensure all success criteria are met
+### The test suite as spec guards
 
-## Writing Effective INITIAL.md Files
+62 tests currently enforce the document's own rules:
 
-### Key Sections Explained
+- `src/lib/contrast.test.ts` — the §3.5.1 WCAG ratios (rust is never text on ink; tan on ink is large/UI only)
+- `src/lib/camera.test.ts` — the §2 grammar: reactive = hard cut, clarifying = eased dolly-out, avoidant = drift, regulated = eased settle
+- `src/content/scenarios.test.ts` — 25 scenarios, 5 per stage, 4 choices each, valid archetypes, no em dashes / emoji / banned copy constructions
+- `src/components/EntrySequence.test.tsx` — the §4.2 beat timeline, skip behavior, session-once gating
+- `src/lib/store.test.ts` — progress survives refresh
+- `src/pages/ScenarioPage.test.tsx` — choices branch, consequences reveal, camera eases per archetype, 2D fallback when WebGL is unavailable
+- `src/three/figures.test.ts` — locked mesh/material parameters (64×64 heads, roughness 0.6, metalness 0.08, grounded rigs)
+- `src/three/lighting.test.ts` — ACES 0.85, PCFSoft shadows, ink fog, one shadow-casting light
+- `src/three/poses.test.ts` — meaning → pose mapping and the GSAP curve bindings (power3.inOut / instant set / power1.out)
+- `src/styles/palette.test.ts` — every hex/rgba in the stylesheet traces to the four tokens; pure white never appears
 
-**FEATURE**: Be specific and comprehensive
-- ❌ "Build a web scraper"
-- ✅ "Build an async web scraper using BeautifulSoup that extracts product data from e-commerce sites, handles rate limiting, and stores results in PostgreSQL"
+## Roadmap
 
-**EXAMPLES**: Leverage the examples/ folder
-- Place relevant code patterns in `examples/`
-- Reference specific files and patterns to follow
-- Explain what aspects should be mimicked
+1. ✅ 2D walking skeleton
+2. ✅ Entry sequence in Three.js / React Three Fiber, same beats, 2D fallback
+3. ✅ One 3D stage set per life stage, shared by all 25 scenarios
+4. 🔜 Per-scenario 3D key-beat specials (§5 directive blocks: whip-pans, rack-focus, orbit, whisper trail, crowd glide, etc.)
+5. §7.5 launch checklist (completion page, about/contact, alt text, terms/privacy if analytics arrive)
 
-**DOCUMENTATION**: Include all relevant resources
-- API documentation URLs
-- Library guides
-- MCP server documentation
-- Database schemas
+---
 
-**OTHER CONSIDERATIONS**: Capture important details
-- Authentication requirements
-- Rate limits or quotas
-- Common pitfalls
-- Performance requirements
+# ANIMATE UI
 
-## The PRP Workflow
+**Animate UI** is an open-source component distribution library and documentation hub modeled on the shadcn/ui paradigm: components ship as **editable source code** you copy, install, or fetch via CLI — never a locked npm package.
 
-### How /generate-prp Works
+- **Stack**: React 19, TypeScript, Tailwind CSS v4, Motion, class-variance-authority.
+- **Components (MVP)**: Button, Accordion, Dialog, Tooltip, Card, Skeleton — each with semantic Tailwind tokens, accessibility, and `prefers-reduced-motion` support.
+- **Distribution**: `animate-ui/registry/registry.json` + a zero-dependency Node CLI (`npm run add button`, `npm run list`) that copies source, resolves the shared `cn()` helper, and prints dependency + theme instructions.
+- **Docs site**: live previews, install commands, usage notes, and the real component source (imported `?raw`, so docs can never drift from the registry). Serves at `http://localhost:5174` via `npm run dev` in `animate-ui/`.
+- **Motion quality control** is codified: every animation must communicate state, micro-interactions stay ≤200ms, reduced motion disables all transforms, and static components (Card, Skeleton) stay static on purpose.
 
-The command follows this process:
-
-1. **Research Phase**
-   - Analyzes your codebase for patterns
-   - Searches for similar implementations
-   - Identifies conventions to follow
-
-2. **Documentation Gathering**
-   - Fetches relevant API docs
-   - Includes library documentation
-   - Adds gotchas and quirks
-
-3. **Blueprint Creation**
-   - Creates step-by-step implementation plan
-   - Includes validation gates
-   - Adds test requirements
-
-4. **Quality Check**
-   - Scores confidence level (1-10)
-   - Ensures all context is included
-
-### How /execute-prp Works
-
-1. **Load Context**: Reads the entire PRP
-2. **Plan**: Creates detailed task list using TodoWrite
-3. **Execute**: Implements each component
-4. **Validate**: Runs tests and linting
-5. **Iterate**: Fixes any issues found
-6. **Complete**: Ensures all requirements met
-
-See `PRPs/EXAMPLE_multi_agent_prp.md` for a complete example of what gets generated.
-
-## Using Examples Effectively
-
-The `examples/` folder is **critical** for success. AI coding assistants perform much better when they can see patterns to follow.
-
-### What to Include in Examples
-
-1. **Code Structure Patterns**
-   - How you organize modules
-   - Import conventions
-   - Class/function patterns
-
-2. **Testing Patterns**
-   - Test file structure
-   - Mocking approaches
-   - Assertion styles
-
-3. **Integration Patterns**
-   - API client implementations
-   - Database connections
-   - Authentication flows
-
-4. **CLI Patterns**
-   - Argument parsing
-   - Output formatting
-   - Error handling
-
-### Example Structure
-
-```
-examples/
-├── README.md           # Explains what each example demonstrates
-├── cli.py             # CLI implementation pattern
-├── agent/             # Agent architecture patterns
-│   ├── agent.py      # Agent creation pattern
-│   ├── tools.py      # Tool implementation pattern
-│   └── providers.py  # Multi-provider pattern
-└── tests/            # Testing patterns
-    ├── test_agent.py # Unit test patterns
-    └── conftest.py   # Pytest configuration
-```
-
-## Best Practices
-
-### 1. Be Explicit in INITIAL.md
-- Don't assume the AI knows your preferences
-- Include specific requirements and constraints
-- Reference examples liberally
-
-### 2. Provide Comprehensive Examples
-- More examples = better implementations
-- Show both what to do AND what not to do
-- Include error handling patterns
-
-### 3. Use Validation Gates
-- PRPs include test commands that must pass
-- AI will iterate until all validations succeed
-- This ensures working code on first try
-
-### 4. Leverage Documentation
-- Include official API docs
-- Add MCP server resources
-- Reference specific documentation sections
-
-### 5. Customize CLAUDE.md
-- Add your conventions
-- Include project-specific rules
-- Define coding standards
-
-## Resources
-
-- [Claude Code Documentation](https://docs.anthropic.com/en/docs/claude-code)
-- [Context Engineering Best Practices](https://www.philschmid.de/context-engineering)
+Full details in [`animate-ui/README.md`](animate-ui/README.md).
