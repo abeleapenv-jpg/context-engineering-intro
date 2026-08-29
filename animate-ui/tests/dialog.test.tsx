@@ -75,6 +75,41 @@ describe('dialog', () => {
     expect(dialog.getAttribute('aria-describedby')).toBe(description.id);
   });
 
+  it('traps Tab focus inside the panel', () => {
+    function TrapHarness() {
+      const [open, setOpen] = useState(false);
+      return (
+        <Dialog open={open} onOpenChange={setOpen}>
+          <DialogTrigger>Open</DialogTrigger>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Trap</DialogTitle>
+            </DialogHeader>
+            <input aria-label="Name" placeholder="Name" />
+            <DialogFooter>
+              <DialogClose>Close</DialogClose>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
+      );
+    }
+    render(<TrapHarness />);
+    fireEvent.click(screen.getByRole('button', { name: 'Open' }));
+
+    const close = screen.getByRole('button', { name: 'Close' });
+    const input = screen.getByRole('textbox', { name: 'Name' });
+
+    // Forward Tab from the last focusable wraps to the first.
+    close.focus();
+    fireEvent.keyDown(document, { key: 'Tab' });
+    expect(document.activeElement).toBe(input);
+
+    // Shift+Tab from the first focusable wraps back to the last.
+    input.focus();
+    fireEvent.keyDown(document, { key: 'Tab', shiftKey: true });
+    expect(document.activeElement).toBe(close);
+  });
+
   it('reports open changes through onOpenChange', () => {
     const onOpenChange = vi.fn();
     function Controlled() {

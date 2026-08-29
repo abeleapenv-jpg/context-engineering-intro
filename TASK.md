@@ -2,10 +2,25 @@
 
 Last updated: 2026-08-29
 
-## Session status: FINALIZED ✅
-- [x] All session work committed and pushed to `arena/01a043f1-context-engineering-intro`
-- [x] Pull request opened: **PR #1** — "Quietfield 25-scenario experience + Animate UI component library (MVP)" (base `main`)
-- [x] Final gates: Quietfield 73 tests + Animate UI 31 tests green, lint/typecheck/build clean on both projects
+## Session status: PR #1 MERGED ✅ + docs upgrade complete
+
+- [x] **PR #1 merged** into `main` (merge commit `637b166`, 2026-08-29)
+- [x] Follow-up: Animate UI docs quality pass (see below), committed and pushed; new PR can be opened on request
+
+## Animate UI — docs quality pass ✅ DONE (2026-08-29)
+
+- [x] Theme toggle upgraded: animated sun/moon swap, localStorage persistence, pre-paint script (already existed; polished rather than duplicated), smooth color transition (reduced-motion aware)
+- [x] Typography/contrast: code font stack, text-balance hero, muted preview stage, visible token-derived focus ring site-wide
+- [x] Entrance animations (staggered fades ≤300ms) + hover/active states on nav, sidebar, cards
+- [x] Tabbed component pages: Preview / Code / Props API (WAI-ARIA tabs, arrow-key navigation)
+- [x] Interactive controls drive real props: variant/size/disabled (button), type/collapsible/duration (accordion), duration (dialog), delay/duration (tooltip). Logic correction: added real `duration` props to accordion/dialog/tooltip instead of fake UI-only knobs
+- [x] Copy buttons with animated checkmark feedback (CodeBlock + InstallCommand)
+- [x] Cmd+K fuzzy search palette (subsequence matching, keyboard, aria combobox/listbox)
+- [x] Mobile slide-over drawer (focus management, Escape, backdrop) + desktop sidebar grouped by category
+- [x] Breadcrumbs + previous/next pagination on component pages
+- [x] Props API tables + Accessibility & Keyboard Interactions sections for all 6 components (authored from sources; completeness tested)
+- [x] Dialog focus trap added (Tab/Shift+Tab cycle within the panel) — a real ARIA gap found and fixed
+- [x] Gates: 43 tests green (palette, drawer, tabs, theme, trap, duration props), lint 0/0, typecheck, production build
 
 ## Animate UI (animate-ui/) ✅ DONE — MVP
 

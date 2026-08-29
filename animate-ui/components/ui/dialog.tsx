@@ -44,10 +44,17 @@ function useDialog(): DialogContextValue {
 export interface DialogProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
+  /** Seconds for the fade/scale transitions. Default 0.15. */
+  duration?: number;
   children: ReactNode;
 }
 
-export function Dialog({ open, onOpenChange, children }: DialogProps) {
+export function Dialog({
+  open,
+  onOpenChange,
+  duration = 0.15,
+  children,
+}: DialogProps) {
   const titleId = useId();
   const descriptionId = useId();
   const [content, setContent] = useState<ReactNode>(null);
@@ -55,7 +62,9 @@ export function Dialog({ open, onOpenChange, children }: DialogProps) {
   const panelRef = useRef<HTMLDivElement | null>(null);
   const reducedMotion = useReducedMotion();
 
-  // Focus + scroll management while open.
+  // Focus management while open: move focus into the panel, trap Tab
+  // within it, restore scroll, close on Escape, and return focus to the
+  // trigger on close.
   useEffect(() => {
     if (!open) return;
     triggerRef.current = document.activeElement as HTMLElement | null;
@@ -63,7 +72,33 @@ export function Dialog({ open, onOpenChange, children }: DialogProps) {
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') onOpenChange(false);
+      if (event.key === 'Escape') {
+        onOpenChange(false);
+        return;
+      }
+      if (event.key !== 'Tab') return;
+      const panel = panelRef.current;
+      if (!panel) return;
+      const focusables = panel.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])',
+      );
+      if (focusables.length === 0) {
+        event.preventDefault();
+        return;
+      }
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      const active = document.activeElement as HTMLElement | null;
+      const inside = active !== null && panel.contains(active);
+      if (event.shiftKey) {
+        if (!inside || active === first) {
+          event.preventDefault();
+          last.focus();
+        }
+      } else if (!inside || active === last) {
+        event.preventDefault();
+        first.focus();
+      }
     };
     document.addEventListener('keydown', onKeyDown);
     return () => {
@@ -99,7 +134,7 @@ export function Dialog({ open, onOpenChange, children }: DialogProps) {
                 initial={reducedMotion ? false : { opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                transition={{ duration: 0.15 }}
+                transition={{ duration }}
                 aria-hidden="true"
               />
               <motion.div
@@ -114,7 +149,7 @@ export function Dialog({ open, onOpenChange, children }: DialogProps) {
                 initial={reducedMotion ? false : { opacity: 0, scale: 0.96 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={reducedMotion ? { opacity: 0 } : { opacity: 0, scale: 0.96 }}
-                transition={{ duration: 0.15, ease: 'easeOut' }}
+                transition={{ duration, ease: 'easeOut' }}
               >
                 {content}
               </motion.div>

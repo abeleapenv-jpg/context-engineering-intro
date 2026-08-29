@@ -54,7 +54,7 @@ export const COMPONENTS: ComponentMeta[] = [
     category: 'disclosure',
     dependencies: ['clsx', 'tailwind-merge', 'motion'],
     usage:
-      'Wrap AccordionItems in Accordion. type="single" (default) opens one item at a time; type="multiple" allows several. Set collapsible={false} to keep one item always open. Height animates 0 to auto over 200ms; reduced motion opens instantly.',
+      'Wrap AccordionItems in Accordion. type="single" (default) opens one item at a time; type="multiple" allows several. Set collapsible={false} to keep one item always open. duration sets the animation speed in seconds (default 0.2). Height animates 0 to auto; reduced motion opens instantly.',
     source: accordionSource,
   },
   {
@@ -65,7 +65,7 @@ export const COMPONENTS: ComponentMeta[] = [
     category: 'overlay',
     dependencies: ['clsx', 'tailwind-merge', 'motion'],
     usage:
-      'Dialog is controlled: pass open and onOpenChange. DialogTrigger and DialogClose render where you place them; DialogContent slots its children into the portal panel. Focus moves into the panel on open and returns to the trigger on close.',
+      'Dialog is controlled: pass open and onOpenChange (duration sets the transition speed in seconds, default 0.15). DialogTrigger and DialogClose render where you place them; DialogContent slots its children into the portal panel. Focus moves into the panel on open, Tab is trapped within it, and focus returns to the trigger on close.',
     source: dialogSource,
   },
   {
@@ -87,7 +87,7 @@ export const COMPONENTS: ComponentMeta[] = [
     category: 'feedback',
     dependencies: ['clsx', 'tailwind-merge', 'motion'],
     usage:
-      'Wrap any focusable element in Tooltip with a content node and a side. TooltipProvider sets a shared delayDuration. Shows on hover and focus, hides on leave, blur, and Escape. aria-describedby links the tooltip to the trigger.',
+      'Wrap any focusable element in Tooltip with a content node and a side. TooltipProvider sets a shared delayDuration; duration sets the fade speed (default 0.15). Shows on hover and focus, hides on leave, blur, and Escape. aria-describedby links the tooltip to the trigger.',
     source: tooltipSource,
   },
 ];

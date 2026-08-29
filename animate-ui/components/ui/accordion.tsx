@@ -20,6 +20,8 @@ import { cn } from '../../lib/utils';
 interface AccordionContextValue {
   openItems: Set<string>;
   toggle: (value: string) => void;
+  /** Seconds for the height animation (0 = instant). */
+  duration: number;
 }
 
 const AccordionContext = createContext<AccordionContextValue | null>(null);
@@ -54,12 +56,15 @@ export interface AccordionProps
   type?: 'single' | 'multiple';
   collapsible?: boolean;
   defaultValue?: string | string[];
+  /** Seconds for the open/close height animation. Default 0.2. */
+  duration?: number;
 }
 
 export function Accordion({
   type = 'single',
   collapsible = true,
   defaultValue,
+  duration = 0.2,
   className,
   children,
   ...props
@@ -94,7 +99,7 @@ export function Accordion({
   };
 
   return (
-    <AccordionContext.Provider value={{ openItems, toggle }}>
+    <AccordionContext.Provider value={{ openItems, toggle, duration }}>
       <div className={cn('w-full', className)} {...props}>
         {children}
       </div>
@@ -169,6 +174,7 @@ export function AccordionContent({
   ...props
 }: Omit<HTMLMotionProps<'div'>, 'children'> & { children?: ReactNode }) {
   const { contentId, open } = useAccordionItem();
+  const { duration } = useAccordion();
   const reducedMotion = useReducedMotion();
 
   if (reducedMotion) {
@@ -194,7 +200,7 @@ export function AccordionContent({
           initial={{ height: 0, opacity: 0 }}
           animate={{ height: 'auto', opacity: 1 }}
           exit={{ height: 0, opacity: 0 }}
-          transition={{ duration: 0.2, ease: 'easeOut' }}
+          transition={{ duration, ease: 'easeOut' }}
           className={cn('overflow-hidden text-sm', className)}
           {...props}
         >

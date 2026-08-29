@@ -39,7 +39,7 @@ export function ComponentsIndexPage() {
                 <Link
                   key={component.slug}
                   to={`/components/${component.slug}`}
-                  className="group rounded-lg border border-border p-5 transition-colors hover:border-foreground/30"
+                  className="group rounded-lg border border-border p-5 transition-[border-color,transform] duration-200 hover:-translate-y-0.5 hover:border-foreground/30"
                 >
                   <h3 className="font-semibold group-hover:underline">
                     {component.name}

@@ -108,6 +108,19 @@ describe('accordion', () => {
     fireEvent.click(screen.getByRole('button', { name: 'First' }));
     expect(screen.getByText('First content')).toBeInTheDocument();
   });
+
+  it('accepts a duration prop for the animation speed', () => {
+    render(
+      <Accordion type="single" collapsible duration={0.05}>
+        <AccordionItem value="a">
+          <AccordionTrigger>Speedy</AccordionTrigger>
+          <AccordionContent>Speedy content</AccordionContent>
+        </AccordionItem>
+      </Accordion>,
+    );
+    fireEvent.click(screen.getByRole('button', { name: 'Speedy' }));
+    expect(screen.getByText('Speedy content')).toBeInTheDocument();
+  });
 });
 
 describe('tooltip', () => {

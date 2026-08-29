@@ -48,11 +48,18 @@ export function TooltipProvider({
 export interface TooltipProps {
   content: ReactNode;
   side?: keyof typeof POSITIONS;
+  /** Seconds for the fade animation. Default 0.15. */
+  duration?: number;
   /** Any focusable element (button, link, input, ...). */
   children: ReactElement<HTMLAttributes<HTMLElement>>;
 }
 
-export function Tooltip({ content, side = 'top', children }: TooltipProps) {
+export function Tooltip({
+  content,
+  side = 'top',
+  duration = 0.15,
+  children,
+}: TooltipProps) {
   const id = useId();
   const delayDuration = useContext(TooltipDelayContext);
   const [open, setOpen] = useState(false);
@@ -100,7 +107,7 @@ export function Tooltip({ content, side = 'top', children }: TooltipProps) {
             reducedMotion ? false : { opacity: 0, y: side === 'bottom' ? -2 : 2 }
           }
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.15, ease: 'easeOut' }}
+          transition={{ duration, ease: 'easeOut' }}
           className={cn(
             'pointer-events-none absolute z-50 w-max max-w-64 rounded-md bg-foreground px-2 py-1.5 text-xs text-background',
             POSITIONS[side],

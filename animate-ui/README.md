@@ -55,6 +55,21 @@ npm run typecheck  # tsc across docs + components
 The docs site imports component sources with `?raw`, so the code examples
 are always the exact files users copy - docs and registry cannot drift.
 
+### Docs features
+
+- **Search**: global Cmd+K / Ctrl+K fuzzy palette over components and
+  guide pages (arrows, Enter, Escape, aria combobox + listbox).
+- **Navigation**: sticky sidebar grouped by category (desktop), mobile
+  slide-over drawer, breadcrumbs, and previous/next pagination.
+- **Component pages**: tabbed Preview / Code / Props API with live
+  controls driving real props (variants, sizes, type, collapsible,
+  `duration`, tooltip delay), animated copy feedback, TypeScript props
+  reference tables, and Accessibility & Keyboard Interactions notes.
+- **Theme**: dark/light toggle with localStorage persistence, animated
+  icon swap, and a pre-paint script to avoid theme flash.
+- **Motion standards**: entrance animations are quick staggered fades
+  (≤300ms) and everything respects `prefers-reduced-motion`.
+
 ## Motion standards
 
 1. Every animation answers: does it communicate state, or would the UI be
@@ -81,7 +96,12 @@ When Animate UI moves to its own repository, update the links in
 - [x] Six components with Motion, TypeScript, and accessibility
 - [x] Docs site with live previews, install commands, and real source
 - [x] Minimal CLI (`add` / `list`) with registry resolution
-- [x] Tests: component behavior, CLI, registry/docs consistency, routes
+- [x] Docs UX: Cmd+K palette, sidebar + mobile drawer, tabs, props API
+      tables, accessibility sections, breadcrumbs, prev/next, animated
+      copy feedback, theme persistence
+- [x] `duration` props on Accordion/Dialog/Tooltip; dialog focus trap
+- [x] Tests: component behavior, CLI, registry/docs consistency, routes,
+      palette, drawer, tabs, theme (43 tests)
 - [ ] Component expansion (tabs, toast, popover, dropdown menu, ...)
 - [ ] Published registry over HTTP so `npx animate-ui add` works from any project
 - [ ] Registry schema versioning and dependency resolution across releases

@@ -1,11 +1,19 @@
 /*
  * Home: hero, features, component grid, motion standards.
+ * Entrance animations are quick, staggered fades that Motion strips to
+ * opacity-only under reduced motion.
  */
+import { motion } from 'motion/react';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import { InstallCommand } from '../components/site/InstallCommand';
 import { CATEGORY_LABELS, COMPONENTS } from '../content/components';
+
+const FADE_UP = {
+  initial: { opacity: 0, y: 10 },
+  animate: { opacity: 1, y: 0 },
+};
 
 export function HomePage() {
   useEffect(() => {
@@ -16,18 +24,34 @@ export function HomePage() {
     <div className="mx-auto w-full max-w-5xl px-4 pb-24">
       {/* Hero */}
       <section className="flex flex-col items-center gap-6 py-20 text-center">
-        <span className="rounded-full border border-border px-3 py-1 text-xs text-muted-foreground">
+        <motion.span
+          {...FADE_UP}
+          transition={{ duration: 0.3, ease: 'easeOut' }}
+          className="rounded-full border border-border px-3 py-1 text-xs text-muted-foreground"
+        >
           v0.1.0 · MIT licensed · React + Tailwind + Motion
-        </span>
-        <h1 className="max-w-2xl text-4xl font-semibold tracking-tight sm:text-5xl">
+        </motion.span>
+        <motion.h1
+          {...FADE_UP}
+          transition={{ duration: 0.3, delay: 0.05, ease: 'easeOut' }}
+          className="max-w-2xl text-balance text-4xl font-semibold tracking-tight sm:text-5xl"
+        >
           Components that move well.
-        </h1>
-        <p className="max-w-xl text-muted-foreground">
+        </motion.h1>
+        <motion.p
+          {...FADE_UP}
+          transition={{ duration: 0.3, delay: 0.1, ease: 'easeOut' }}
+          className="max-w-xl text-muted-foreground"
+        >
           Beautifully animated, accessible React components. Copy them,
           install them, or fetch them with the CLI - the code is yours,
           never a locked package.
-        </p>
-        <div className="flex flex-wrap items-center justify-center gap-3">
+        </motion.p>
+        <motion.div
+          {...FADE_UP}
+          transition={{ duration: 0.3, delay: 0.15, ease: 'easeOut' }}
+          className="flex flex-wrap items-center justify-center gap-3"
+        >
           <Link
             to="/components"
             className="inline-flex h-9 items-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
@@ -40,14 +64,23 @@ export function HomePage() {
           >
             Contributing
           </Link>
-        </div>
-        <div className="w-full max-w-md">
+        </motion.div>
+        <motion.div
+          {...FADE_UP}
+          transition={{ duration: 0.3, delay: 0.2, ease: 'easeOut' }}
+          className="w-full max-w-md"
+        >
           <InstallCommand command="npm i clsx tailwind-merge class-variance-authority motion" />
-        </div>
+        </motion.div>
       </section>
 
       {/* Features */}
-      <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4" aria-label="Features">
+      <motion.section
+        {...FADE_UP}
+        transition={{ duration: 0.3, delay: 0.25, ease: 'easeOut' }}
+        className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4"
+        aria-label="Features"
+      >
         {[
           {
             title: 'Editable code',
@@ -71,17 +104,22 @@ export function HomePage() {
             <p className="mt-2 text-sm text-muted-foreground">{feature.body}</p>
           </div>
         ))}
-      </section>
+      </motion.section>
 
       {/* Component grid */}
-      <section className="mt-20" aria-label="Components">
+      <motion.section
+        {...FADE_UP}
+        transition={{ duration: 0.3, delay: 0.3, ease: 'easeOut' }}
+        className="mt-20"
+        aria-label="Components"
+      >
         <h2 className="text-lg font-semibold">Components</h2>
         <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {COMPONENTS.map((component) => (
             <Link
               key={component.slug}
               to={`/components/${component.slug}`}
-              className="group rounded-lg border border-border p-5 transition-colors hover:border-foreground/30"
+              className="group rounded-lg border border-border p-5 transition-[border-color,transform] duration-200 hover:-translate-y-0.5 hover:border-foreground/30"
             >
               <p className="text-xs text-muted-foreground">
                 {CATEGORY_LABELS[component.category]}
@@ -95,10 +133,15 @@ export function HomePage() {
             </Link>
           ))}
         </div>
-      </section>
+      </motion.section>
 
       {/* Motion standards */}
-      <section className="mt-20 rounded-lg border border-border p-6" aria-label="Motion standards">
+      <motion.section
+        {...FADE_UP}
+        transition={{ duration: 0.3, delay: 0.35, ease: 'easeOut' }}
+        className="mt-20 rounded-lg border border-border p-6"
+        aria-label="Motion standards"
+      >
         <h2 className="text-lg font-semibold">Motion standards</h2>
         <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
           <li>Every animation must answer: does it communicate state, or would the UI be identical without it?</li>
@@ -106,7 +149,7 @@ export function HomePage() {
           <li>prefers-reduced-motion disables transforms and transitions everywhere, including previews.</li>
           <li>Not every component moves. Card and Skeleton are deliberately calm.</li>
         </ul>
-      </section>
+      </motion.section>
     </div>
   );
 }

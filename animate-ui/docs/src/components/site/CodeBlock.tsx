@@ -1,9 +1,9 @@
 /*
- * CodeBlock - filename, copy button, and a small tokenizer highlighter
- * (no syntax library shipped; this is for component source, which is
- * short and regular).
+ * CodeBlock - filename, animated copy feedback, and a small tokenizer
+ * highlighter (no syntax library shipped; this is for component source,
+ * which is short and regular).
  */
-import { useState } from 'react';
+import { CopyButton } from './CopyButton';
 
 interface Token {
   text: string;
@@ -47,29 +47,6 @@ export function highlight(code: string): Token[] {
   }
   if (last < code.length) tokens.push({ text: code.slice(last) });
   return tokens;
-}
-
-function CopyButton({ text }: { text: string }) {
-  const [copied, setCopied] = useState(false);
-  const copy = async () => {
-    try {
-      await navigator.clipboard.writeText(text);
-      setCopied(true);
-      window.setTimeout(() => setCopied(false), 1500);
-    } catch {
-      /* clipboard unavailable */
-    }
-  };
-  return (
-    <button
-      type="button"
-      onClick={copy}
-      className="rounded-md px-2 py-1 text-xs text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
-      aria-label="Copy code"
-    >
-      {copied ? 'Copied' : 'Copy'}
-    </button>
-  );
 }
 
 export function CodeBlock({

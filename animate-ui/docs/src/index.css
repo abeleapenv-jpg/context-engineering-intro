@@ -81,4 +81,27 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  /* Visible, token-derived focus ring for every keyboard focusable. */
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+
+  /* Consistent code voice for commands, keys, and source listings. */
+  code,
+  kbd,
+  pre {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  }
+}
+
+/* Fluid theme switching: colors crossfade when the preference flips.
+   Disabled for users who prefer reduced motion. */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    transition:
+      background-color 200ms linear,
+      color 200ms linear;
+  }
 }

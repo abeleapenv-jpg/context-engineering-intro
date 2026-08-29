@@ -2,14 +2,17 @@
  * Animate UI docs - routes and shell.
  *
  * App is the browser entry (BrowserRouter); AppShell holds the routes so
- * tests can mount it inside MemoryRouter.
+ * tests can mount it inside MemoryRouter. Owns the Cmd+K command palette
+ * and the mobile drawer.
  */
 import { MotionConfig } from 'motion/react';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
 
+import { CommandPalette } from './components/site/CommandPalette';
 import { Footer } from './components/site/Footer';
 import { Header } from './components/site/Header';
+import { MobileDrawer } from './components/site/MobileDrawer';
 import { ComponentsIndexPage } from './pages/ComponentsIndexPage';
 import { ComponentDetailPage } from './pages/ComponentDetailPage';
 import { ContributingPage } from './pages/ContributingPage';
@@ -26,10 +29,28 @@ function ScrollToTop() {
 }
 
 export function AppShell() {
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [paletteOpen, setPaletteOpen] = useState(false);
+
+  // Global Cmd+K / Ctrl+K: the fuzzy search palette.
+  useEffect(() => {
+    const onKeyDown = (event: KeyboardEvent) => {
+      if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k') {
+        event.preventDefault();
+        setPaletteOpen((open) => !open);
+      }
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, []);
+
   return (
     <div className="flex min-h-screen flex-col">
       <ScrollToTop />
-      <Header />
+      <Header
+        onMenuOpen={() => setDrawerOpen(true)}
+        onSearchOpen={() => setPaletteOpen(true)}
+      />
       <main className="flex-1">
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -41,6 +62,8 @@ export function AppShell() {
         </Routes>
       </main>
       <Footer />
+      <MobileDrawer open={drawerOpen} onClose={() => setDrawerOpen(false)} />
+      <CommandPalette open={paletteOpen} onClose={() => setPaletteOpen(false)} />
     </div>
   );
 }
