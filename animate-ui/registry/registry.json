@@ -1,0 +1,104 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "animate-ui",
+  "homepage": "/",
+  "description": "Beautifully animated, accessible UI components for React.",
+  "items": [
+    {
+      "name": "button",
+      "type": "registry:component",
+      "description": "Variants and sizes for actions, with a tactile Motion press.",
+      "docs": "/components/button",
+      "files": [
+        {
+          "path": "components/ui/button.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": ["class-variance-authority", "clsx", "tailwind-merge", "motion"],
+      "registryDependencies": ["utils"]
+    },
+    {
+      "name": "card",
+      "type": "registry:component",
+      "description": "Structured content container. Deliberately static.",
+      "docs": "/components/card",
+      "files": [
+        {
+          "path": "components/ui/card.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": ["clsx", "tailwind-merge"],
+      "registryDependencies": ["utils"]
+    },
+    {
+      "name": "accordion",
+      "type": "registry:component",
+      "description": "Disclosure with animated height, single or multiple items.",
+      "docs": "/components/accordion",
+      "files": [
+        {
+          "path": "components/ui/accordion.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": ["clsx", "tailwind-merge", "motion"],
+      "registryDependencies": ["utils"]
+    },
+    {
+      "name": "dialog",
+      "type": "registry:component",
+      "description": "Accessible modal with focus management and Motion transitions.",
+      "docs": "/components/dialog",
+      "files": [
+        {
+          "path": "components/ui/dialog.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": ["clsx", "tailwind-merge", "motion"],
+      "registryDependencies": ["utils"]
+    },
+    {
+      "name": "skeleton",
+      "type": "registry:component",
+      "description": "Loading placeholder with a quiet CSS pulse.",
+      "docs": "/components/skeleton",
+      "files": [
+        {
+          "path": "components/ui/skeleton.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": ["clsx", "tailwind-merge"],
+      "registryDependencies": ["utils"]
+    },
+    {
+      "name": "tooltip",
+      "type": "registry:component",
+      "description": "Hover and focus hint with delay and fade.",
+      "docs": "/components/tooltip",
+      "files": [
+        {
+          "path": "components/ui/tooltip.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": ["clsx", "tailwind-merge", "motion"],
+      "registryDependencies": ["utils"]
+    },
+    {
+      "name": "utils",
+      "type": "registry:lib",
+      "description": "The cn() class merge helper every component shares.",
+      "files": [
+        {
+          "path": "lib/utils.ts",
+          "type": "registry:lib"
+        }
+      ],
+      "dependencies": ["clsx", "tailwind-merge"]
+    }
+  ]
+}

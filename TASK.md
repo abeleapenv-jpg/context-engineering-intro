@@ -1,8 +1,24 @@
-# TASK.md — QUIETFIELD
+# TASK.md — WORKSPACE (Quietfield + Animate UI)
 
-Last updated: 2026-08-27
+Last updated: 2026-08-29
 
-## Active Tasks
+## Animate UI (animate-ui/) ✅ DONE — MVP
+
+- [x] Six components (button, card, accordion, dialog, skeleton, tooltip): React 19 + TypeScript + Tailwind v4 semantic tokens + Motion, reduced-motion aware, accessible (aria, keyboard, focus management)
+- [x] shadcn-style registry (`registry/registry.json`) + zero-dep Node CLI (`add`, `list`) with cn() resolution, dependency reporting, and theme-snippet output
+- [x] Docs site (Vite workspace): home, component index, detail pages with live previews + install commands + real `?raw` source, license + contributing pages, 404, theme toggle, per-page titles, honest GitHub links
+- [x] Motion quality control codified (≤200ms micro-interactions, reduced motion everywhere, static components stay static)
+- [x] 31 tests green: component behavior, dialog portal/Escape/focus, CLI copy + failure modes, registry ↔ docs consistency, docs routes
+- [x] lint / typecheck / production build green; CLI smoke-tested from an external cwd
+- [x] Repo docs updated (README, CLAUDE.md section, .gitignore)
+
+## Animate UI — roadmap
+- [ ] Expand components (tabs, toast, popover, dropdown menu, avatar, badge)
+- [ ] Serve the registry over HTTP so `npx animate-ui add` works outside this repo
+- [ ] Registry schema versioning + dependency resolution across releases
+- [ ] Own repository + updated `GITHUB_URL` in `animate-ui/docs/src/components/site/Header.tsx`
+
+## Quietfield — Active Tasks
 
 ### 1. Quietfield website — 2D walking skeleton (spec §1.1 step 1) ✅ DONE
 - [x] Persist spec as `docs/quietfield_3d_animation_layer.md` (verbatim source of truth)

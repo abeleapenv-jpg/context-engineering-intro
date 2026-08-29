@@ -55,6 +55,12 @@
 - **Keep `TASK.md` current** — it is the session handoff document.
 - **Comment non-obvious code** and ensure everything is understandable to a mid-level developer.
 
+### 🧩 Animate UI (separate project in `animate-ui/`)
+- `animate-ui/` is its own open-source component library + docs site (React, TypeScript, Tailwind CSS v4, Motion). **Quietfield's guardrails (four-token palette, no Tailwind, no glass beyond Amendment A) apply only to `site/` and the Quietfield spec** — do not apply them to `animate-ui/`, and do not apply Animate UI conventions to `site/`.
+- Read `animate-ui/README.md` and `animate-ui/CONTRIBUTING.md` before touching it. Its rules: components are editable source (registry + CLI, never a locked package), semantic Tailwind tokens (`bg-background`, `text-foreground`, `border-border`, `ring-ring`), Motion is tasteful and always `prefers-reduced-motion`-aware, one component per file, React 19 style (no `forwardRef`).
+- **Docs never drift from the registry**: docs code examples import the real sources with `?raw`; a test (`tests/registry.test.ts`) enforces registry ↔ docs consistency.
+- Its scripts live at the `animate-ui/` root: `npm run dev` (docs on 5174), `npm test`, `npm run lint`, `npm run typecheck`, `npm run build`, `npm run add <component>`, `npm run list`.
+
 ### 🧠 AI Behavior Rules
 - **Never assume missing context. Ask questions if uncertain.**
 - **Never hallucinate libraries or functions** — only use known, verified packages that are already in `site/package.json` (or add them deliberately).

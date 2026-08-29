@@ -1,3 +1,14 @@
+# Context Engineering Workspace
+
+Two projects live in this repository:
+
+- **[Quietfield](#quietfield)** (`site/`, `docs/quietfield_3d_animation_layer.md`) — an interactive site teaching social observation through 25 scenarios, with a 2D/3D semantic camera system.
+- **[Animate UI](#animate-ui)** (`animate-ui/`) — an open-source component library + docs site modeled on the shadcn/ui paradigm: React, TypeScript, Tailwind CSS, and Motion, distributed as editable source via a registry and CLI.
+
+The remaining directories are the original Context Engineering template (PRP workflow, Claude Code guides, use-cases), kept for reference.
+
+---
+
 # QUIETFIELD
 
 **Quietfield** is an interactive website that teaches social observation and interpretation through 25 life-stage scenarios. Its thesis:
@@ -84,3 +95,17 @@ npm run build    # tsc + vite (production build in dist/)
 3. ✅ One 3D stage set per life stage, shared by all 25 scenarios
 4. 🔜 Per-scenario 3D key-beat specials (§5 directive blocks: whip-pans, rack-focus, orbit, whisper trail, crowd glide, etc.)
 5. §7.5 launch checklist (completion page, about/contact, alt text, terms/privacy if analytics arrive)
+
+---
+
+# ANIMATE UI
+
+**Animate UI** is an open-source component distribution library and documentation hub modeled on the shadcn/ui paradigm: components ship as **editable source code** you copy, install, or fetch via CLI — never a locked npm package.
+
+- **Stack**: React 19, TypeScript, Tailwind CSS v4, Motion, class-variance-authority.
+- **Components (MVP)**: Button, Accordion, Dialog, Tooltip, Card, Skeleton — each with semantic Tailwind tokens, accessibility, and `prefers-reduced-motion` support.
+- **Distribution**: `animate-ui/registry/registry.json` + a zero-dependency Node CLI (`npm run add button`, `npm run list`) that copies source, resolves the shared `cn()` helper, and prints dependency + theme instructions.
+- **Docs site**: live previews, install commands, usage notes, and the real component source (imported `?raw`, so docs can never drift from the registry). Serves at `http://localhost:5174` via `npm run dev` in `animate-ui/`.
+- **Motion quality control** is codified: every animation must communicate state, micro-interactions stay ≤200ms, reduced motion disables all transforms, and static components (Card, Skeleton) stay static on purpose.
+
+Full details in [`animate-ui/README.md`](animate-ui/README.md).

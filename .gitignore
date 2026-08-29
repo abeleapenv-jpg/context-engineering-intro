@@ -9,3 +9,10 @@ site/node_modules/
 site/dist/
 site/.vite/
 site/coverage/
+
+# animate-ui
+animate-ui/node_modules/
+animate-ui/docs/node_modules/
+animate-ui/docs/dist/
+animate-ui/docs/.vite/
+animate-ui/coverage/

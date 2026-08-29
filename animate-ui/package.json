@@ -1,0 +1,48 @@
+{
+  "name": "animate-ui",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Beautifully animated, accessible UI components for React. Copy, install, or fetch via CLI - the code is yours.",
+  "type": "module",
+  "workspaces": [
+    "docs"
+  ],
+  "scripts": {
+    "dev": "npm run dev -w docs",
+    "build": "npm run build -w docs",
+    "preview": "npm run preview -w docs",
+    "typecheck": "npm run typecheck -w docs",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "oxlint .",
+    "add": "node cli/index.js add",
+    "list": "node cli/index.js list"
+  },
+  "keywords": [
+    "react",
+    "typescript",
+    "tailwindcss",
+    "motion",
+    "components",
+    "ui"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "motion": "^12.0.0",
+    "tailwind-merge": "^3.0.0"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^7.0.1",
+    "@testing-library/react": "^16.3.2",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.4",
+    "jsdom": "^30.0.1",
+    "oxlint": "^1.79.0",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "typescript": "~6.0.2",
+    "vitest": "^4.1.11"
+  }
+}
