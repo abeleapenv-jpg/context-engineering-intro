@@ -10,7 +10,10 @@
 const PROGRESS_KEY = 'quietfield.progress.v1';
 
 export interface ProgressState {
-  /** Anonymous per-browser identity so later features can key off it. */
+  /** Anonymous per-browser identity (spec §3.7.3: `sessionId | userId`).
+   *  This implementation chooses the `sessionId` branch: the site has no
+   *  accounts, so persistence stays client-side and consent-free
+   *  (§7.5 #11/#16). */
   sessionId: string;
   /** Scenario ids completed at least once. */
   completedScenarioIds: string[];

@@ -46,18 +46,28 @@ describe('entry sequence (spec §4.2)', () => {
       'data-beat',
       'pause',
     );
-    expect(screen.getByText('PAUSE.')).toBeInTheDocument();
+    // First text cue (Beat 2): ordinal label matches the spec's §4.2 table.
+    expect(screen.getByText('PAUSE.')).toHaveAttribute('data-text-cue', 'first');
     advance(1200);
     expect(screen.getByTestId('entry-sequence')).toHaveAttribute(
       'data-beat',
       'question',
+    );
+    // Second text cue (Beat 3).
+    expect(screen.getByText('QUESTION.')).toHaveAttribute(
+      'data-text-cue',
+      'second',
     );
     advance(2600);
     expect(screen.getByTestId('entry-sequence')).toHaveAttribute(
       'data-beat',
       'branch',
     );
-    expect(screen.getByText('MORE THAN ONE STORY FITS.')).toBeInTheDocument();
+    // Third text cue (Beat 4).
+    expect(screen.getByText('MORE THAN ONE STORY FITS.')).toHaveAttribute(
+      'data-text-cue',
+      'third',
+    );
     advance(2000);
     expect(screen.getByTestId('entry-sequence')).toHaveAttribute(
       'data-beat',

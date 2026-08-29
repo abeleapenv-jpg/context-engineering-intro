@@ -1,6 +1,6 @@
 # QUIETFIELD — 3D ANIMATION & ENTRY SEQUENCE LAYER
-## Dimensional Staging System for the 25-Scenario Bible + Website Entry Sequence
-### Companion to: Quietfield_Expanded_25_Scenario_Story_Animation_Bible.md — For AI Coding Agent / Musterfield Labs
+## Dimensional Staging System for the 25-Scenario Bible & Website Entry Sequence
+### Companion to: Quietfield_Expanded_25_Scenario_Story_Animation_Bible.md — For an AI Coding Agent / Musterfield Labs
 
 ---
 
@@ -115,9 +115,9 @@ Actual WCAG contrast ratios between the four tokens, calculated directly rather 
 |---|---|---|---|
 | Cream on ink | 13.66:1 | Pass | Pass |
 | Rust on ink | 2.56:1 | **Fail** | **Fail** |
-| Tan on ink | 4.30:1 | Fail (just under) | Pass |
+| Tan on ink | 4.30:1 | **Fail** (just under) | Pass |
 | Rust on cream | 5.34:1 | Pass | Pass |
-| Tan on cream | 3.18:1 | Fail | Pass |
+| Tan on cream | 3.18:1 | **Fail** | Pass |
 | Rust on tan | 1.68:1 | **Fail** | **Fail** |
 
 **Resulting rules:**
@@ -150,6 +150,8 @@ Applies to every page of the site, not just the 3D layer. Same underlying test a
 
 ## 3.6.1 Full Checklist — All 30 Patterns, Explicitly Addressed
 
+Status vocabulary: **Enforce** (must hold by design rule) · **Structurally impossible** (prevented by the four-token system) · **Not applicable** (no action) · **Low priority** (due before public launch). Nuance lives in the Rule column.
+
 | # | Pattern | Status | Rule |
 |---|---|---|---|
 | 1 | Harsh gradients | Structurally impossible | Backgrounds are flat `--qf-ink` or `--qf-cream`. The only permitted gradient is the near-invisible vignette already specified in the 3D lighting language — never a visible two-tone hero gradient. |
@@ -159,20 +161,20 @@ Applies to every page of the site, not just the 3D layer. Same underlying test a
 | 5 | Drop shadows | Enforce | No soft/glassy box-shadows for elevation. Where depth is needed, use a 1px `--qf-tan` hairline border — echoing the logo's thin rule — instead. |
 | 6 | 3 feature cards in a row | Enforce | The 25 scenarios present as one vertical narrative path grouped by life stage — never a 3-up marketing grid. |
 | 7 | Emojis | Enforce | Zero emoji anywhere in UI or copy. The whole visual language (faceless characters, restrained palette) depends on this. |
-| 8 | Liquid glass / glassmorphism | Structurally impossible | All surfaces matte/flat. No blur-behind or translucency effects. |
+| 8 | Liquid glass / glassmorphism | Enforce | All surfaces matte/flat except the §9 (Amendment A) glass surfaces: home stage cards, scenario/stage page headers, and choice cards, token-derived only (ink fill 65%, cream border 8%, blur 12px). No other blur-behind or translucency effects. |
 | 9 | Em dashes (in copy) | Enforce | Site microcopy edited for plain, direct sentences. Flag and rewrite any em-dash-heavy line before it ships. |
-| 10 | Inter / Geist / Space Grotesk | Enforce | Display type: bold geometric sans matching the logo's caps. Body type: something with more editorial character than the default trio — worth trialling a warm serif (e.g. Fraunces, Canela, GT Sectra) or a distinctive sans (Neue Montreal, Söhne) as a direction, not a locked choice. |
-| 11 | Colored left stripe | Structurally impossible-ish | No decorative accent bars on cards. The only permitted "stripe" is the logo's actual rule-with-ticks motif, used sparingly as a section divider — never as a card-border trick. |
+| 10 | Inter / Geist / Space Grotesk | Enforce | Display type: bold geometric sans matching the logo's caps. Body type: something with more editorial character than the default trio — worth trialing a warm serif (e.g. Fraunces, Canela, GT Sectra) or a distinctive sans (Neue Montreal, Söhne) as a direction, not a locked choice. |
+| 11 | Colored left stripe | Enforce | No decorative accent bars on cards. The only permitted "stripe" is the logo's actual rule-with-ticks motif, used sparingly as a section divider — never as a card-border trick. |
 | 12 | Fake testimonials | Not applicable | None planned. If added later, they're real or they're cut. |
 | 13 | Bento grids | Enforce | No dashboard-style mixed-size tile layouts. Layout follows the narrative path structure. |
 | 14 | Terminal window | Not applicable | No code/terminal motif anywhere — irrelevant to the subject matter. |
 | 15 | "It's not X, it's Y" copy | Enforce | Banned construction, site-wide. |
 | 16 | Checkmark bullets | Enforce | Lists use the brand's tick-mark rule-line ornament instead of generic checkmark icons. |
 | 17 | 3 pricing tiers | Not applicable | Not a paid product. Skip entirely. |
-| 18 | No real product demos | Enforce (inverted) | The entry sequence and scenario previews must be the real, working experience — never a screenshot or staged mock standing in for it. |
+| 18 | No real product demos | Enforce | Inverted: the entry sequence and scenario previews must be the real, working experience — never a screenshot or staged mock standing in for it. |
 | 19 | Soft corner radius | Enforce | Cap border-radius at 2px site-wide — near-sharp, matching the mark's square accent. No 12–24px "friendly SaaS" rounding anywhere. |
 | 20 | Purple and black | Structurally impossible | No purple in the token set. |
-| 21 | No skeleton loaders | Enforce (inverted) | Build a real loading state — a subtle animated version of the rule-line ornament — for any scene with load time. Never a blank flash or a generic gray skeleton box. |
+| 21 | No skeleton loaders | Enforce | Inverted: build a real loading state — a subtle animated version of the rule-line ornament — for any scene with load time. Never a blank flash or a generic gray skeleton box. |
 | 22 | Radial orbs | Structurally impossible | No blurred gradient-orb decorative background elements. |
 | 23 | Dot grids | Structurally impossible | No decorative dot-grid textures. If a background texture is ever wanted, reference the logo's compass/tick motif, not a generic dot pattern. |
 | 24 | Sparkle icons | Structurally impossible | No sparkle/magic-wand iconography anywhere, including near any future "smart" features. |
@@ -242,7 +244,7 @@ Scenario {
 }
 
 UserProgress {
-  sessionId or userId,
+  sessionId | userId,
   completedScenarioIds: [string],
   choiceLog: { scenarioId: choiceId },
   currentStageId,
@@ -278,9 +280,9 @@ The sequence should **not resolve into a clean twist.** If it did, it would teac
 |---|---|---|
 | 0 — Void | 0.0–0.8s | Dark, neutral field. No motion. Establishes stillness before any stimulus. |
 | 1 — The Glimpse | 0.8–2.2s | A single abstracted, faceless humanoid figure appears close to camera, frozen mid-gesture — arm partly raised, deliberately ambiguous (reaching? waving? blocking?). Shallow depth of field, slightly low camera angle. |
-| 2 — The Pause | 2.2–3.4s | All motion stops. Camera doesn't move. Word fades in, small and understated: **"PAUSE."** |
-| 3 — The Widening | 3.4–6.0s | Slow, continuous dolly-out (never a cut) reveals the full scene — more figures, more context. Depth of field opens from shallow to deep across the move. The gesture is recontextualized but still not fully resolved. Second word: **"QUESTION."** |
-| 4 — The Branch | 6.0–8.0s | Two or three faint, semi-transparent alternate versions of the scene ghost briefly over one another (light double-exposure), representing multiple plausible interpretations, then settle back into one grounded version. Third line: **"MORE THAN ONE STORY FITS."** |
+| 2 — The Pause | 2.2–3.4s | All motion stops. Camera doesn't move. First text cue fades in, small and understated: **"PAUSE."** |
+| 3 — The Widening | 3.4–6.0s | Slow, continuous dolly-out (never a cut) reveals the full scene — more figures, more context. Depth of field opens from shallow to deep across the move. The gesture is recontextualized but still not fully resolved. Second text cue: **"QUESTION."** |
+| 4 — The Branch | 6.0–8.0s | Two or three faint, semi-transparent alternate versions of the scene ghost briefly over one another (light double-exposure), representing multiple plausible interpretations, then settle back into one grounded version. Third text cue: **"MORE THAN ONE STORY FITS."** |
 | 5 — Resolution | 8.0–11s | Camera settles at a calm, symmetrical, slightly elevated resting position — this becomes the site's recurring "home" camera state. QUIETFIELD wordmark assembles quietly (no bounce, no pop-in — clarity arriving, not an ad dropping), followed by: **"OBSERVE. PAUSE. QUESTION. CONTEXTUALIZE. CHOOSE."** A small, calm "Enter" affordance fades in last. |
 
 A **Skip** control is visible from Beat 0 onward. The sequence plays once per session, never auto-loops, and never re-triggers to recapture attention — consistent with a site whose subject is exactly the ethics of how attention and interpretation get used on people.
@@ -311,19 +313,19 @@ genuinely ambiguous position (could read as reaching, waving, or blocking —
 do not design it to lean toward any one reading). Shallow depth of field.
 Camera slightly below eye level.
 
-BEAT 2 (2.2–3.4s) — Everything stops. No camera movement. Fade in small,
-understated text: "PAUSE." Do not animate this word in with bounce or
+BEAT 2 (2.2–3.4s) — Everything stops. No camera movement. Fade in the first text cue,
+small and understated: "PAUSE." Do not animate this cue in with bounce or
 scale — a simple opacity fade only.
 
 BEAT 3 (3.4–6.0s) — A single continuous eased dolly-out (never a hard cut)
 reveals more of the scene: additional faceless figures and environment that
 recontextualize the original gesture without fully resolving it. Depth of
-field opens from shallow to deep over this beat. Fade in: "QUESTION."
+field opens from shallow to deep over this beat. Fade in the second text cue: "QUESTION."
 
 BEAT 4 (6.0–8.0s) — Briefly overlay two or three translucent, slightly
 offset alternate versions of the scene (light double-exposure effect)
 representing different plausible interpretations, then let them settle back
-into one grounded version. Fade in: "MORE THAN ONE STORY FITS."
+into one grounded version. Fade in the third text cue: "MORE THAN ONE STORY FITS."
 
 BEAT 5 (8.0–11s) — Camera eases to a calm, symmetrical, slightly elevated
 resting position — store this as the reusable "home" camera state for later
@@ -544,7 +546,7 @@ scenario without touching the site's routing or state logic.
 
 **4D — THE MEETING GOES SILENT**
 - Psych: pluralistic ignorance, social inhibition, uncertainty, psychological safety.
-- Camera: locked static wide on the table; ambient particles (dust, a clock hand) keep drifting so stillness doesn't read as a frozen frame.
+- Camera: locked static wide on the table; ambient motion (drifting dust, a ticking clock hand) keeps drifting so stillness doesn't read as a frozen frame.
 - Light: neutral, steady.
 - Beat: the Observer's gaze becomes the only camera motion (a slow pan) until one specific concern is raised, then a controlled, gentle push-in settles on the group's attention.
 
@@ -649,7 +651,7 @@ Repeat this assembly for each of the 24 remaining scenarios using their directiv
 
 # 7.5 PRE-LAUNCH CHECKLIST (19-POINT PASS)
 
-Same status vocabulary as Section 3.6, applied to launch-readiness rather than visual style. Run this once the 3D layer is functionally complete.
+Run this once the 3D layer is functionally complete. Status vocabulary: **Enforce** (required) · **Conditional** (required only if the stated condition is met) · **Not applicable** (no action). Nuance lives in the Note column.
 
 | # | Item | Status | Note |
 |---|---|---|---|
@@ -664,8 +666,8 @@ Same status vocabulary as Section 3.6, applied to launch-readiness rather than v
 | 9 | Unique page titles | Enforce | Distinct `<title>` per scenario, e.g. "The Ball That Disappeared — Quietfield." |
 | 10 | Navigation bar | Enforce | Minimal, respecting 3.6's guardrails — a narrative path, not a SaaS-style menu. |
 | 11 | Site analytics | Conditional | Fine to add, privacy-respecting only — turning this on is what makes item 16 below non-optional. |
-| 12 | Team photo | Reframe | Musterfield Labs is solo — an "about the maker" note/photo fits better than a generic team photo. |
-| 13 | RLS on all endpoints | Enforce, if backend | If user progress or accounts are stored, row-level access control is required, not optional. |
+| 12 | Team photo | Enforce | Reframed: Musterfield Labs is solo — an "about the maker" note/photo fits better than a generic team photo. |
+| 13 | RLS on all endpoints | Conditional | If user progress or accounts are stored, row-level access control is required, not optional. |
 | 14 | SEO optimization | Enforce | Covered by items 1, 3, and 9 together — no separate action needed beyond those three. |
 | 15 | Waitlist page | Not applicable | Nothing here is gated — skip. |
 | 16 | Cookie consent | Conditional | Only needed if analytics/cookies are added — see item 11. |

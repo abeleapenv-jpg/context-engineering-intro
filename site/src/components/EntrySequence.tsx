@@ -11,10 +11,11 @@
  * Beat structure (§4.2):
  *   0 Void (0-0.8)      darkness, no motion
  *   1 Glimpse (0.8-2.2) one figure, close, ambiguous gesture, shallow DOF
- *   2 Pause (2.2-3.4)   all motion stops, "PAUSE." fades in
- *   3 Widening (3.4-6)  one continuous eased dolly-out, "QUESTION."
- *   4 Branch (6-8)      alternate readings ghost over the scene,
- *                       "MORE THAN ONE STORY FITS."
+ *   2 Pause (2.2-3.4)   all motion stops, first text cue "PAUSE." fades in
+ *   3 Widening (3.4-6)  one continuous eased dolly-out, second text cue
+ *                       "QUESTION."
+ *   4 Branch (6-8)      alternate readings ghost over the scene, third
+ *                       text cue "MORE THAN ONE STORY FITS."
  *   5 Resolution (8-11) ease to the home camera state, wordmark assembles,
  *                       five-step line, small Enter affordance
  *
@@ -171,7 +172,11 @@ export function EntrySequence({ reducedMotion, onComplete }: EntrySequenceProps)
 
   const words = (
     <div className="qf-entry-words">
+      {/* The three text cues (§4.2), labeled by ordinal to stay
+          consistent with the spec's beat table:
+          first = Beat 2, second = Beat 3, third = Beat 4. */}
       <p
+        data-text-cue="first"
         className={`qf-display qf-beat-word qf-fade-in ${
           wordVisible.pause ? 'qf-fade-show' : ''
         }`}
@@ -179,6 +184,7 @@ export function EntrySequence({ reducedMotion, onComplete }: EntrySequenceProps)
         PAUSE.
       </p>
       <p
+        data-text-cue="second"
         className={`qf-display qf-beat-word qf-fade-in ${
           wordVisible.question ? 'qf-fade-show' : ''
         }`}
@@ -186,6 +192,7 @@ export function EntrySequence({ reducedMotion, onComplete }: EntrySequenceProps)
         QUESTION.
       </p>
       <p
+        data-text-cue="third"
         className={`qf-display qf-beat-word qf-beat-word-wide qf-fade-in ${
           wordVisible.branch ? 'qf-fade-show' : ''
         }`}

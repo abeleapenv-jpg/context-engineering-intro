@@ -194,7 +194,7 @@ export const OFFICE: Scenario[] = [
     psychologyTags: ['pluralistic ignorance', 'social inhibition', 'uncertainty', 'psychological safety'],
     stageLanguage: STAGES[3].motionLanguage,
     cameraDirective:
-      'Locked static wide on the table; ambient particles (dust, a clock hand) keep drifting so stillness does not read as a frozen frame.',
+      'Locked static wide on the table; ambient motion (drifting dust, a ticking clock hand) keeps drifting so stillness does not read as a frozen frame.',
     lightDirective: 'Neutral, steady.',
     keyBeat:
       'The Observer\'s gaze becomes the only camera motion (a slow pan) until one specific concern is raised, then a controlled, gentle push-in settles on the group\'s attention.',
