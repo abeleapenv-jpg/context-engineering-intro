@@ -69,6 +69,19 @@ export function getProgress(): ProgressState {
   return current;
 }
 
+/** Read the persisted choice id for one scenario (spec §3.7.3 choiceLog:
+ *  { scenarioId: choiceId }). Returns null when the scenario has no
+ *  recorded choice. */
+export function getChoiceId(scenarioId: string): string | null {
+  return current.choiceLog[scenarioId] ?? null;
+}
+
+/** Test-only: reset the in-memory state so suites start each test from a
+ *  clean slate (the module caches `current` across a session). */
+export function __resetForTests(): void {
+  current = { ...EMPTY };
+}
+
 /** Record a scenario completion and its choice. Idempotent for repeat runs. */
 export function recordChoice(record: ChoiceRecord): ProgressState {
   current = {

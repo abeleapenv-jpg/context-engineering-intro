@@ -24,6 +24,7 @@
 
 ### 🧱 Code Structure & Modularity
 - **Never create a file longer than 500 lines.** If a file approaches this limit, split it into modules or helper files.
+- **Selection state is a dictionary keyed by scenarioId** — `Record<scenarioId, Selection>` in `ScenarioPage`, persisted as `choiceLog: { scenarioId: choiceId }` in the store (§3.7.3). Never store a bare `chosen`/`selected` primitive: the route reuses one component instance across all scenarios and every scenario uses the same A/B/C/D letter ids, so a shared primitive highlights the same letter everywhere. Handlers write only their own scenario's key; reads default to blank (unselected scenarios have no entry).
 - **Organize code into clearly separated modules**, grouped by feature or responsibility:
   - `src/lib/` — camera contract, semantic utilities, store, tokens (pure logic)
   - `src/components/` — reusable UI and scene components

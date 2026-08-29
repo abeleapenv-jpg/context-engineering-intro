@@ -74,4 +74,38 @@ describe('progress store', () => {
     // A fresh session id is generated.
     expect(progress.sessionId.length).toBeGreaterThan(8);
   });
+
+  it('reads the persisted choice id per scenario (choiceLog dictionary)', async () => {
+    const store = await freshStore();
+    expect(store.getChoiceId('1a')).toBeNull();
+    store.recordChoice({
+      scenarioId: '1a',
+      choiceId: 'D',
+      archetype: 'regulated',
+      text: 'Ask for it back, plainly.',
+    });
+    store.recordChoice({
+      scenarioId: '1b',
+      choiceId: 'A',
+      archetype: 'reactive',
+      text: 'Ask what is so funny, sharply.',
+    });
+    // Each scenario resolves its own persisted id; no cross-reads.
+    expect(store.getChoiceId('1a')).toBe('D');
+    expect(store.getChoiceId('1b')).toBe('A');
+    expect(store.getChoiceId('2a')).toBeNull();
+  });
+
+  it('resets cleanly between tests (__resetForTests)', async () => {
+    const store = await freshStore();
+    store.recordChoice({
+      scenarioId: '1a',
+      choiceId: 'A',
+      archetype: 'reactive',
+      text: 'Grab the bag.',
+    });
+    store.__resetForTests();
+    expect(store.getProgress().choiceLog).toEqual({});
+    expect(store.getChoiceId('1a')).toBeNull();
+  });
 });

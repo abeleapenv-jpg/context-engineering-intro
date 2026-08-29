@@ -31,6 +31,14 @@ Last updated: 2026-08-27
 - [x] Glassmorphism on stage cards, page headers, choice cards (token-derived, Amendment A.1)
 - [x] 62 tests green (palette, contrast, camera grammar, figure params, lighting params, pose mapping)
 
+### 3.5 Quiz state isolation refactor (dictionary-based selection state) ✅ DONE
+- [x] Replaced the bare `chosen`/`revealed` primitives in `ScenarioPage` (which leaked across `/scenario/:id` route reuse, highlighting the same A–D letter on every scenario) with `Record<scenarioId, Selection>` keyed per scenario
+- [x] Isolated handlers: choosing writes only that scenario's key; the settle callback reveals only that scenario's consequence
+- [x] Deterministic navigation rendering: each scenario reads its own key; transient camera/hover state resets on scenario change; hydration from persisted `choiceLog` restores a scenario's own choice on fresh visits
+- [x] Defensive initialization: unselected scenarios render blank with all choices enabled; stale persisted choice ids resolve to blank instead of a fallback index or crash
+- [x] Store: added `getChoiceId(scenarioId)` read helper + test-only `__resetForTests()`
+- [x] Regression tests: in-page navigation cross-talk, dictionary retention on return, per-scenario hydration, stale-id defense (73 tests green)
+
 ### 4. Per-scenario 3D key-beat specials (spec §5 directive blocks) 🔜 NEXT
 - [ ] 1A whip-pan on the ball's roll; snap-zoom on attention landing
 - [ ] 1B rack-focus freeze (shallow DOF) + reveal dolly-out

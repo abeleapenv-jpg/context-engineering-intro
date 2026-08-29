@@ -6,6 +6,21 @@
  * four choices with §3.7.1 archetypes, and a per-choice consequence beat.
  * Completion and choice log persist across refresh (spec §1.1 step 1).
  *
+ * SELECTION STATE ARCHITECTURE:
+ * The page is reused by React Router across /scenario/:id param changes,
+ * so option selections live in a dictionary keyed by scenarioId - never
+ * a bare primitive that would leak from one scenario into the next
+ * (every scenario uses the same A/B/C/D letter ids, so a shared
+ * primitive highlights the same letter everywhere).
+ *   - `selections: Record<scenarioId, Selection>` mirrors the persisted
+ *     `choiceLog: { scenarioId: choiceId }` shape (§3.7.3).
+ *   - Handlers write ONLY their own scenario's key.
+ *   - On navigation, each scenario reads its own key; unselected
+ *     scenarios default to blank (no fallback index, no inheritance).
+ *   - On mount/navigation, an entry is hydrated from the persisted
+ *     choiceLog when one exists, validated against content; stale or
+ *     invalid persisted ids resolve to blank instead of crashing.
+ *
  * Hover previews show where a choice takes the frame (§3.6.1 #28); in 3D
  * the focus figure also turns its head toward the hovered response
  * (power2.out). The real resolution uses the archetype's own easing, so
@@ -39,7 +54,7 @@ import {
   homeState,
   snapCut,
 } from '../lib/semantic';
-import { getProgress, notify, recordChoice } from '../lib/store';
+import { getChoiceId, getProgress, notify, recordChoice } from '../lib/store';
 import { useSceneCamera } from '../lib/useSceneCamera';
 import { useReducedMotion } from './useReducedMotion';
 
@@ -50,6 +65,39 @@ const STAGE_COMPONENTS: Record<string, () => React.ReactElement> = {
   office: MeetingRoomStage,
   'middle-age': DinnerTableStage,
 };
+
+/** One scenario's option selection, kept in a per-scenario dictionary. */
+interface Selection {
+  choiceId: string;
+  archetype: Archetype;
+  consequence: string;
+  /** The consequence beat has finished playing for this scenario. */
+  revealed: boolean;
+}
+
+/** Dictionary of selections, keyed explicitly by scenarioId (spec §3.7.3:
+ *  choiceLog = { scenarioId: choiceId }). */
+type SelectionMap = Record<string, Selection>;
+
+/**
+ * Resolve the persisted choice for one scenario into a Selection entry.
+ * Returns null when nothing is persisted OR the persisted id no longer
+ * matches any choice in the content (defensive: stale data renders blank
+ * instead of highlighting a fallback index or crashing).
+ */
+function loadPersistedSelection(scenarioId: string): Selection | null {
+  const choiceId = getChoiceId(scenarioId);
+  if (!choiceId) return null;
+  const scenario = SCENARIOS.find((s) => s.id === scenarioId);
+  const choice = scenario?.choices.find((c) => c.id === choiceId);
+  if (!scenario || !choice) return null;
+  return {
+    choiceId: choice.id,
+    archetype: choice.archetype,
+    consequence: choice.consequence,
+    revealed: true,
+  };
+}
 
 /**
  * The scripted intro per stage motion language (§5.2). It runs once on
@@ -109,12 +157,8 @@ export function ScenarioPage() {
    *  figure turns toward it (power2.out). */
   const [focus, setFocus] = useState<number | null>(null);
 
-  const [chosen, setChosen] = useState<{
-    choiceId: string;
-    archetype: Archetype;
-    consequence: string;
-  } | null>(null);
-  const [revealed, setRevealed] = useState(false);
+  // Option selections, isolated per scenario (see header comment).
+  const [selections, setSelections] = useState<SelectionMap>({});
 
   const applyDirective = (dir: CameraDirective | null, onSettled?: () => void) => {
     settleRef.current = onSettled ?? null;
@@ -129,6 +173,29 @@ export function ScenarioPage() {
       document.title = 'Quietfield';
     };
   }, [scenario]);
+
+  // Switching scenarios (the route reuses this component): transient
+  // camera/hover state resets so nothing from the previous scenario
+  // leaks into the next. The intro effect re-scripts the stage.
+  useEffect(() => {
+    settleRef.current = null;
+    setDirective(null);
+    setFocus(null);
+    camera.apply(null);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [scenario?.id]);
+
+  // Hydrate the current scenario's selection from the persisted
+  // choiceLog when this scenario has no in-session entry yet. Writes
+  // only this scenario's key; unselected scenarios stay blank.
+  useEffect(() => {
+    if (!scenario) return;
+    setSelections((prev) => {
+      if (scenario.id in prev) return prev;
+      const persisted = loadPersistedSelection(scenario.id);
+      return persisted ? { ...prev, [scenario.id]: persisted } : prev;
+    });
+  }, [scenario?.id]);
 
   // The scripted intro, per stage motion language. Interrupted by any
   // choice. Skipped entirely under reduced motion (§3).
@@ -156,41 +223,59 @@ export function ScenarioPage() {
 
   const StageComponent = STAGE_COMPONENTS[stage.id] ?? PlaygroundStage;
 
+  // Deterministic read: this scenario's own entry, or nothing. No
+  // fallback index, no inherited value from any other scenario.
+  const current = selections[scenario.id] ?? null;
+
   /** Hover preview: show where this choice takes the frame, gently
    *  (eased, short). The real resolution uses the archetype's easing. */
   const preview = (archetype: Archetype) => {
-    if (reducedMotion || revealed) return;
+    if (reducedMotion || current?.revealed) return;
     const behavior = ARCHETYPE_BEHAVIOR[archetype](home);
     applyDirective({ to: behavior.to, ease: 'ease', meaning: behavior.meaning, durationMs: 900 });
   };
 
   const restore = () => {
-    if (reducedMotion || revealed) return;
+    if (reducedMotion || current?.revealed) return;
     applyDirective({ to: home, ease: 'ease', meaning: 'settling', durationMs: 1100 });
   };
 
-  /** Choose: the archetype's directive carries the meaning (§3.7.1).
-   *  The settle callback reveals the consequence beat. */
+  /** Choose: write ONLY this scenario's dictionary key (the archetype's
+   *  directive carries the meaning, §3.7.1). The settle callback reveals
+   *  the consequence beat for this scenario alone. */
   const choose = (choiceId: string, archetype: Archetype, consequence: string, text: string) => {
-    setChosen({ choiceId, archetype, consequence });
-    setRevealed(false);
+    const selectedScenarioId = scenario.id;
+    setSelections((prev) => ({
+      ...prev,
+      [selectedScenarioId]: { choiceId, archetype, consequence, revealed: false },
+    }));
     setFocus(null);
     applyDirective(ARCHETYPE_BEHAVIOR[archetype](home), () => {
-      setRevealed(true);
-      recordChoice({ scenarioId: scenario.id, choiceId, archetype, text });
+      setSelections((prev) => {
+        const entry = prev[selectedScenarioId];
+        return entry ? { ...prev, [selectedScenarioId]: { ...entry, revealed: true } } : prev;
+      });
+      recordChoice({ scenarioId: selectedScenarioId, choiceId, archetype, text });
       notify();
     });
   };
 
+  /** Replay: clear only this scenario's entry. Persisted history in the
+   *  choiceLog stays (it is a log, not UI state). */
   const restart = () => {
-    setChosen(null);
-    setRevealed(false);
+    setSelections((prev) => {
+      if (!(scenario.id in prev)) return prev;
+      const next = { ...prev };
+      delete next[scenario.id];
+      return next;
+    });
+    setFocus(null);
     applyDirective({ to: home, ease: 'ease', meaning: 'settling', durationMs: 1200 });
   };
 
   const progress = getProgress();
   const alreadyDone = progress.completedScenarioIds.includes(scenario.id);
-  const chosenWord = chosen ? ARCHETYPE_WORDS[chosen.archetype] : null;
+  const chosenWord = current ? ARCHETYPE_WORDS[current.archetype] : null;
 
   const fallback2d = (
     <SceneFrame
@@ -251,7 +336,7 @@ export function ScenarioPage() {
         <h2 className="qf-label qf-choices-label">WHAT DO YOU DO?</h2>
         <div className="qf-choice-grid">
           {scenario.choices.map((choice, index) => {
-            const isChosen = chosen?.choiceId === choice.id;
+            const isChosen = current?.choiceId === choice.id;
             return (
               <button
                 key={choice.id}
@@ -276,7 +361,7 @@ export function ScenarioPage() {
                   setFocus(null);
                   restore();
                 }}
-                disabled={revealed}
+                disabled={Boolean(current?.revealed)}
                 aria-label={`Choice ${choice.id}: ${choice.text}`}
               >
                 <span className="qf-choice-letter qf-label">{choice.id}</span>
@@ -291,17 +376,17 @@ export function ScenarioPage() {
       </section>
 
       <section
-        className={`qf-consequence qf-fade-in ${revealed ? 'qf-fade-show' : ''}`}
+        className={`qf-consequence qf-fade-in ${current?.revealed ? 'qf-fade-show' : ''}`}
         aria-live="polite"
         data-testid="consequence"
       >
-        {revealed && chosen ? (
+        {current?.revealed && current ? (
           <>
             <p className="qf-label">WHAT CHANGED</p>
             <p className="qf-consequence-arch qf-label">
-              {chosen.choiceId} · {chosenWord}
+              {current.choiceId} · {chosenWord}
             </p>
-            <p className="qf-body qf-consequence-text">{chosen.consequence}</p>
+            <p className="qf-body qf-consequence-text">{current.consequence}</p>
             <p className="qf-label qf-consequence-note">
               NO SINGLE CORRECT READING. THE FRAME IS ALWAYS WIDER THAN IT FIRST LOOKS.
             </p>
