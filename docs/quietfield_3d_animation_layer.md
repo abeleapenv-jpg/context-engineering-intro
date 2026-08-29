@@ -27,7 +27,7 @@ If you're an agent picking this file up mid-project (a new session, a new phase,
 
 **The one test every motion, hover, and color choice must pass:** does this carry psychological meaning, or would the scene work identically without it? If the latter, cut it.
 
-**Camera grammar (never break this across any of the 25 scenes):** hard cut = impulse/reactivity · eased move = deliberation · dolly-in = narrowing attention · dolly-out = widening context · shallow depth of field = tunnel vision · deep focus = full awareness. Full table in Section 2.
+**Camera grammar (never break this across all 25 scenes and the entry sequence):** hard cut = impulse/reactivity · eased move = deliberation · dolly-in = narrowing attention · dolly-out = widening context · shallow depth of field = tunnel vision · deep focus = full awareness. Full table in Section 2.
 
 **Geometry:** corners ≤2px, no drop shadows (use a 1px `--qf-tan` hairline instead), no stock icons, no default AI-startup typefaces. Full list in Section 3.6.
 
@@ -121,7 +121,7 @@ Actual WCAG contrast ratios between the four tokens, calculated directly rather 
 | Rust on tan | 1.68:1 | **Fail** | **Fail** |
 
 **Resulting rules:**
-- **Rust is never used as text on ink.** It fails contrast even at large sizes (2.56:1). This confirms and hardens the "rust is a signal color, not UI color" rule from 3.6 — use it for shapes, accents, and the single point of emphasis described throughout this doc, never for a rust-colored word or label on the dark background.
+- **Rust is never used as text on ink.** It fails contrast even at large sizes (2.56:1). This confirms and hardens the "rust is a signal color, not a palette color" rule stated later in this section (3.5) — use it for shapes, accents, and the single point of emphasis described throughout this doc, never for a rust-colored word or label on the dark background.
 - **Tan on ink is large-text/UI only** (≥18px regular or ≥14px bold, or non-text UI elements like the rule lines). Don't set small body copy in tan-on-ink — it's a hair under the AA threshold.
 - **If rust needs to appear as text anywhere** (unlikely, but e.g. a printed/exported context on a cream surface), it's compliant on cream at 5.34:1 — never on ink or on tan.
 - **Never pair rust directly against tan** for anything text-like — 1.68:1 fails outright.

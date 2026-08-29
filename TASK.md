@@ -57,7 +57,7 @@ Last updated: 2026-08-27
 
 ## Discovered During Work
 
-- **No 25-scenario bible exists in the repo.** The spec references one; scenario stories and choice copy were authored from the §5 directive blocks (psych tags, camera/light directives, key beats) and marked in `src/content/scenarios/`. When the real bible arrives, reconcile it against these files and the §3.7 archetype tags.
+- **No 25-scenario bible exists in the repo.** The spec references one; scenario stories and choice copy were authored from the §5 directive blocks (psych tags, camera/light directives, key beats) and marked in `src/content/scenarios/`. When the real bible arrives, reconcile it against these files and the §3.7 archetype tags. **Citations to "Section 11/12/13" of the bible (§1, §2, §3, §3.5, §7 of the 3D doc) remain unverified** — the source file is not present to check its current numbering against; re-verify those numbers once the bible is added to `docs/`.
 - **Stack decision**: React 19 + Vite 8 + TypeScript strict + Three.js (R3F 9) + GSAP 3; HashRouter for static-host friendliness; Archivo Variable (display) + Fraunces Variable (body) per §3.6.1 #10.
 - **The spec's canonical Childhood scene lives in the missing master spec** (§5.3 note). Its current authored version is an interpretation; flag for reconciliation.
 - **CLAUDE.md rewritten** from the repo's Python template defaults to the project's actual TypeScript stack (template rules kept in spirit: file length caps, tests-first, TASK.md tracking).
