@@ -1,0 +1,852 @@
+[
+  {
+    "id": "1A",
+    "life_stage": "childhood",
+    "title": "The Ball That Disappeared",
+    "image_path": "/assets/images/1A-the-ball-that-disappeared.png",
+    "image_alt": "A small figure stands alone at the left edge of a sunlit park while a tight cluster of larger figures plays with a ball at the center. The lone figure leans toward the game but has not stepped into it.",
+    "prompt": "You're playing at the park. Another kid picks up your ball and starts playing with it without asking. What do you do?",
+    "choices": [
+      {
+        "key": "A",
+        "text": "Grab it back immediately.",
+        "resolution": "The other kid pulls back, surprised. The group goes quiet for a second. You have your ball back, but nobody asks you to play again today.",
+        "archetype": "reactive"
+      },
+      {
+        "key": "B",
+        "text": "Ask for it back calmly.",
+        "resolution": "The kid pauses, then hands it over. \"Sorry, didn't know it was yours.\" You end up playing together for the next twenty minutes.",
+        "archetype": "regulated"
+      },
+      {
+        "key": "C",
+        "text": "Walk away and find something else to do.",
+        "resolution": "You find a quieter spot and start your own game. A couple of kids wander over later, curious what you're doing.",
+        "archetype": "avoidant"
+      },
+      {
+        "key": "D",
+        "text": "Ask if you can join in too.",
+        "resolution": "The group shifts to make room. The ball keeps moving, just with one more person in the circle now.",
+        "archetype": "clarifying"
+      }
+    ]
+  },
+  {
+    "id": "1B",
+    "life_stage": "childhood",
+    "title": "The Laugh",
+    "image_path": "/assets/images/1B-the-laugh.png",
+    "image_alt": "Two figures burst out laughing at the center of a classroom that has gone still around them, while a third figure stands small in the doorway, caught between entering and reading the room.",
+    "prompt": "You step into the classroom and two of your friends burst out laughing at the same moment. The whole room has gone quiet around the sound. What do you do?",
+    "choices": [
+      {
+        "key": "A",
+        "text": "Ask what's so funny, sharply.",
+        "resolution": "They explain it was a joke someone told before you came in. Now the joke is that you asked like that. The heat came from the question, not the laugh.",
+        "archetype": "reactive"
+      },
+      {
+        "key": "B",
+        "text": "Sit down and decide they meant you.",
+        "resolution": "You spend the lesson certain everyone is looking at you. Nobody is. The certainty still feels expensive.",
+        "archetype": "avoidant"
+      },
+      {
+        "key": "C",
+        "text": "Check what else happened in the room.",
+        "resolution": "There is a drawing being passed around two desks over. It was never about you. The laugh still lands differently once you see the drawing.",
+        "archetype": "clarifying"
+      },
+      {
+        "key": "D",
+        "text": "Smile and take your seat.",
+        "resolution": "The room settles. Whatever the laugh was, you did not hand it a second act.",
+        "archetype": "regulated"
+      }
+    ]
+  },
+  {
+    "id": "1C",
+    "life_stage": "childhood",
+    "title": "The Invitation",
+    "image_path": "/assets/images/1C-the-invitation.png",
+    "image_alt": "Four figures play in a closed circle at the center of an overcast playground, their shoulders turned inward. A fifth figure stands outside the circle near the frame's edge, close enough to watch, far enough to not be in it.",
+    "prompt": "Four kids are playing a game in a closed circle. You are standing near them, close enough to watch, far enough to not be in it. One of them keeps looking over. What do you do?",
+    "choices": [
+      {
+        "key": "A",
+        "text": "Barge into the middle of the circle.",
+        "resolution": "The game stops. You are in the circle now, in the sense that you are inside it. In every other sense you are not in it.",
+        "archetype": "reactive"
+      },
+      {
+        "key": "B",
+        "text": "Drift off and pretend you were leaving.",
+        "resolution": "You make leaving look intentional. Behind you, the circle closes again. You were not rejected; you just left before the question could be asked.",
+        "archetype": "avoidant"
+      },
+      {
+        "key": "C",
+        "text": "Ask what they are playing.",
+        "resolution": "They explain the rules, and explaining the rules turns out to be an invitation. A question can be a door that does not look like one.",
+        "archetype": "clarifying"
+      },
+      {
+        "key": "D",
+        "text": "Ask if you can play.",
+        "resolution": "There is a small silence, then the circle shifts and makes room. It was not a perfect fit. It was a place that got slightly wider.",
+        "archetype": "regulated"
+      }
+    ]
+  },
+  {
+    "id": "1D",
+    "life_stage": "childhood",
+    "title": "The Teacher's Question",
+    "image_path": "/assets/images/1D-the-teachers-question.png",
+    "image_alt": "A wide, still classroom where every figure faces forward in perfect rows. One small figure sits mid-room with a hand half-raised, surrounded by a widening pool of empty space as the silence stretches.",
+    "prompt": "The teacher has asked a question and the room has gone very still. You know the answer. You are almost certain you know the answer. The silence is getting longer. What do you do?",
+    "choices": [
+      {
+        "key": "A",
+        "text": "Blurt the answer out.",
+        "resolution": "It is right. The room unclenches. But the answer came out fast and loud, and you hear yourself replaying the loud part all afternoon.",
+        "archetype": "reactive"
+      },
+      {
+        "key": "B",
+        "text": "Stare at your desk.",
+        "resolution": "Someone else answers, wrong, and the teacher corrects them. You were right. The desk does not care, which is the problem with desks.",
+        "archetype": "avoidant"
+      },
+      {
+        "key": "C",
+        "text": "Raise your hand partway.",
+        "resolution": "The teacher sees the half-raised hand and gives you the floor. Asking for the floor, it turns out, is allowed to be quiet.",
+        "archetype": "clarifying"
+      },
+      {
+        "key": "D",
+        "text": "Raise your hand and answer when called.",
+        "resolution": "You wait your turn, you speak, you are right. The silence ends because someone chose to enter it carefully.",
+        "archetype": "regulated"
+      }
+    ]
+  },
+  {
+    "id": "1E",
+    "life_stage": "childhood",
+    "title": "The Skipping Rope",
+    "image_path": "/assets/images/1E-the-skipping-rope.png",
+    "image_alt": "Two children face each other across a rope lying on the ground, both turned halfway toward the viewer, under hard midday light that throws one long shadow across the playground.",
+    "prompt": "Two children are arguing over a skipping rope at the edge of the playground. The rope is on the ground between them. Both are looking at you. What do you do?",
+    "choices": [
+      {
+        "key": "A",
+        "text": "Pick the rope up first.",
+        "resolution": "Both of them turn on you at once. Moving first ended the argument, but it also ended the negotiation. Whoever wanted to talk now has to talk to you instead.",
+        "archetype": "reactive"
+      },
+      {
+        "key": "B",
+        "text": "Look for a teacher.",
+        "resolution": "You set off across the playground and the argument fades behind you. It probably still got decided. Just not by anyone who was in it, and not by you.",
+        "archetype": "avoidant"
+      },
+      {
+        "key": "C",
+        "text": "Ask what each of them wants.",
+        "resolution": "Turns out one wants the rope now and the other wants it next. The second thing is the one you would have missed by picking a side.",
+        "archetype": "clarifying"
+      },
+      {
+        "key": "D",
+        "text": "Wait and watch a moment.",
+        "resolution": "One of them glances at you, then back at the other. An audience changes things. After a beat, the one holding the rope hands it over on their own.",
+        "archetype": "regulated"
+      }
+    ]
+  },
+  {
+    "id": "2A",
+    "life_stage": "school",
+    "title": "The Show of Hands",
+    "image_path": "/assets/images/2A-the-show-of-hands.png",
+    "image_alt": "Seen from slightly above, a classroom of desks where every arm rises in one synchronized wave while a single figure near the center keeps both hands down, and every head is turned toward that one figure.",
+    "prompt": "The class is voting on something by show of hands. The first wave of hands goes up together, like one animal. You have not decided. Every face is turned toward you. What do you do?",
+    "choices": [
+      {
+        "key": "A",
+        "text": "Raise your hand with the wave.",
+        "resolution": "Your hand is up before you finish deciding. The wave was warm and easy to join. You spend the rest of the lesson unsure what you actually voted for.",
+        "archetype": "reactive"
+      },
+      {
+        "key": "B",
+        "text": "Keep your hands under the desk.",
+        "resolution": "The vote passes anyway. Nobody records who did not vote. Only you know the moment you sat out.",
+        "archetype": "avoidant"
+      },
+      {
+        "key": "C",
+        "text": "Ask what the options actually mean.",
+        "resolution": "The teacher restates the question and three hands come down. The wave was not agreement. It was momentum, and momentum does not survive a clear question.",
+        "archetype": "clarifying"
+      },
+      {
+        "key": "D",
+        "text": "Vote after you have decided, even alone.",
+        "resolution": "Your hand goes up late, by itself. The room notices the late hand more than it ever noticed the wave.",
+        "archetype": "regulated"
+      }
+    ]
+  },
+  {
+    "id": "2B",
+    "life_stage": "school",
+    "title": "The Group Chat",
+    "image_path": "/assets/images/2B-the-group-chat.png",
+    "image_alt": "A lone figure sits small at the bottom of the frame beneath a towering stack of overlapping message cards, holding a single glowing rectangle in their hands while one blank card waits at the top of the stack.",
+    "prompt": "The class chat has turned on someone. Message after message is piling up about a video they posted. Your phone is warm in your hand. The typing indicator is blinking. What do you do?",
+    "choices": [
+      {
+        "key": "A",
+        "text": "Add your own joke to the thread.",
+        "resolution": "It gets three laughing reactions immediately. The reaction feels like warmth. You know exactly what kind of warmth it is.",
+        "archetype": "reactive"
+      },
+      {
+        "key": "B",
+        "text": "Mute the chat and close the app.",
+        "resolution": "The thread continues without you. At school the next day, the target of the thread says hello to you like nothing happened. Something did happen.",
+        "archetype": "avoidant"
+      },
+      {
+        "key": "C",
+        "text": "Ask why the video is a problem.",
+        "resolution": "The thread hesitates. Nobody can quite say what rule the video broke. The pause is small, but it is real, and the pile stops growing.",
+        "archetype": "clarifying"
+      },
+      {
+        "key": "D",
+        "text": "Message the person privately.",
+        "resolution": "You write one sentence to the person the thread is about. It does not stop the thread. It changes what the thread feels like from inside it.",
+        "archetype": "regulated"
+      }
+    ]
+  },
+  {
+    "id": "2C",
+    "life_stage": "school",
+    "title": "The Popular Answer",
+    "image_path": "/assets/images/2C-the-popular-answer.png",
+    "image_alt": "Rows of identical raised hands echo toward a math board at the front of an evenly lit room. One desk sits apart with clear space around it, a small page of working on top, its owner the only figure not echoing the room.",
+    "prompt": "The math problem on the board has two candidate answers. Most of the class, including the popular kids, is confidently saying one of them. Your own scratch work keeps landing on the other one. What do you do?",
+    "choices": [
+      {
+        "key": "A",
+        "text": "Change your answer to match the class.",
+        "resolution": "The teacher reveals the answer. Your original scratch work had it right. The class was loud and wrong, and you knew it before you erased.",
+        "archetype": "reactive"
+      },
+      {
+        "key": "B",
+        "text": "Erase everything and say nothing.",
+        "resolution": "You remove the evidence rather than test it. The board goes on being wrong for everyone, including you, because nobody has to look at your paper.",
+        "archetype": "avoidant"
+      },
+      {
+        "key": "C",
+        "text": "Ask the class to show their work.",
+        "resolution": "Three people walk through their steps and one of them stops mid-sentence. The error surfaces on its own. You never had to say anyone was wrong.",
+        "archetype": "clarifying"
+      },
+      {
+        "key": "D",
+        "text": "Show your own work, calmly.",
+        "resolution": "You write your steps on the board, line by line. The room goes quiet, then the confidence shifts. Independent judgment reads differently when it is shown instead of declared.",
+        "archetype": "regulated"
+      }
+    ]
+  },
+  {
+    "id": "2D",
+    "life_stage": "school",
+    "title": "The Friend Who Overshares",
+    "image_path": "/assets/images/2D-the-friend-who-overshares.png",
+    "image_alt": "Two figures sit close in a dim corner of a school courtyard, one leaning in mid-whisper with a small trail of marks traveling from their mouth toward the other, who sits very still, receiving it.",
+    "prompt": "Your friend has just told you something about another student. It is the kind of thing that was clearly not meant to travel. They said it casually, and now they are watching to see what you do with it. What do you do?",
+    "choices": [
+      {
+        "key": "A",
+        "text": "Repeat it to the group later.",
+        "resolution": "It makes a good moment. By the end of the week, the person it was about knows, and the person who told you knows you were the bridge.",
+        "archetype": "reactive"
+      },
+      {
+        "key": "B",
+        "text": "Change the subject fast.",
+        "resolution": "You dodge it so quickly that your friend looks confused. The information is still out. It just does not know what you think of it.",
+        "archetype": "avoidant"
+      },
+      {
+        "key": "C",
+        "text": "Ask if the other person knows they shared it.",
+        "resolution": "Your friend stops, then admits they probably do not. The question was enough. The secret turns back into what it was before it became currency.",
+        "archetype": "clarifying"
+      },
+      {
+        "key": "D",
+        "text": "Say you will keep it between you.",
+        "resolution": "And you do. It is a small, quiet act. Nothing visible changes, except that your friend now tells you things they tell no one else.",
+        "archetype": "regulated"
+      }
+    ]
+  },
+  {
+    "id": "2E",
+    "life_stage": "school",
+    "title": "The Public Mistake",
+    "image_path": "/assets/images/2E-the-public-mistake.png",
+    "image_alt": "At the front of a classroom a single small figure stands frozen and flushed dark while a roomful of tilted heads laughs from every direction, and one figure mid-room sits level and unmoved, facing them.",
+    "prompt": "A kid at the front of the class just answered a question so badly that the whole room laughed, including the teacher by accident. The kid is red-faced and frozen. The laughter is already dying down. What do you do?",
+    "choices": [
+      {
+        "key": "A",
+        "text": "Laugh along with everyone.",
+        "resolution": "You join the wave late, when it is already ebbing. The kid looks at you for a second. You were one of the last faces they saw laughing.",
+        "archetype": "reactive"
+      },
+      {
+        "key": "B",
+        "text": "Look away and say nothing.",
+        "resolution": "The moment passes without you in it. The kid sits down. You tell yourself it was not your problem, and mostly believe it.",
+        "archetype": "avoidant"
+      },
+      {
+        "key": "C",
+        "text": "Catch their eye and give a small nod.",
+        "resolution": "The kid meets your eye and looks away, then looks back. The room moves on. That one nod is the only part of the minute that stays with them.",
+        "archetype": "clarifying"
+      },
+      {
+        "key": "D",
+        "text": "Say the question was actually tricky.",
+        "resolution": "You say it to the teacher, not the room. The laughter has somewhere to go now. The kid exhales. The board gets its turn again.",
+        "archetype": "regulated"
+      }
+    ]
+  },
+  {
+    "id": "3A",
+    "life_stage": "college",
+    "title": "The Cafe",
+    "image_path": "/assets/images/3A-the-cafe.png",
+    "image_alt": "Two figures sit across a small round table in the warm circle of a single lamp, at ease but held apart by the exact width of the table, the space between them unhurried and unspoken.",
+    "prompt": "You are across a small cafe table from someone new. The conversation is easy so far, but it is hovering at the surface. You both know there is a depth knob and neither of you has touched it yet. What do you do?",
+    "choices": [
+      {
+        "key": "A",
+        "text": "Tell a long story about yourself.",
+        "resolution": "You fill the table with your story and the other person's cup gets very interesting to them. One-sided depth is just a monologue with a witness.",
+        "archetype": "reactive"
+      },
+      {
+        "key": "B",
+        "text": "Keep the talk light and brief.",
+        "resolution": "The conversation stays safe and ends early. Safe is comfortable. It is also the reason you know nothing more about them than when you sat down.",
+        "archetype": "avoidant"
+      },
+      {
+        "key": "C",
+        "text": "Share one small real thing.",
+        "resolution": "One honest sentence about your week. They look at you properly for the first time. Then they offer one of their own. The table has a new temperature.",
+        "archetype": "clarifying"
+      },
+      {
+        "key": "D",
+        "text": "Ask a real question and listen.",
+        "resolution": "They talk for a while. You listen. When they ask about you, you notice you are more willing to answer. Reciprocity works when it is allowed to arrive.",
+        "archetype": "regulated"
+      }
+    ]
+  },
+  {
+    "id": "3B",
+    "life_stage": "college",
+    "title": "The First Conversation",
+    "image_path": "/assets/images/3B-the-first-conversation.png",
+    "image_alt": "A tight two-shot at a cafe table in the pause after the usual questions: one figure leans in slightly, having just asked something real, while the other holds still at the edge of deciding how much of themselves to set on the table.",
+    "prompt": "It is the first conversation that might become a friendship. You have each asked the usual questions and now there is a lull. The other person asks: \"So what are you actually like?\" What do you do?",
+    "choices": [
+      {
+        "key": "A",
+        "text": "Narrate your whole life story.",
+        "resolution": "You perform. They nod along. At the end they know a lot about you and you know nothing new about them. A first conversation that is all solo is just an audition.",
+        "archetype": "reactive"
+      },
+      {
+        "key": "B",
+        "text": "Deflect with a joke.",
+        "resolution": "The joke lands and the question disappears under it. You have kept yourself unread, and the moment to be read has passed for today.",
+        "archetype": "avoidant"
+      },
+      {
+        "key": "C",
+        "text": "Answer briefly, then ask it back.",
+        "resolution": "You give them three honest sentences and return the question. The rhythm appears. One reveals, the other reveals. The room gets bigger around the table.",
+        "archetype": "clarifying"
+      },
+      {
+        "key": "D",
+        "text": "Say what you are hoping to find here.",
+        "resolution": "You tell the truth about why you came. It costs you a little and buys the whole conversation. They answer in kind. This is how the depth knob actually works.",
+        "archetype": "regulated"
+      }
+    ]
+  },
+  {
+    "id": "3C",
+    "life_stage": "college",
+    "title": "The Unanswered Message",
+    "image_path": "/assets/images/3C-the-unanswered-message.png",
+    "image_alt": "A phone fills most of the frame, its single read message glowing against a room split flat into a cool day-tone and a darker evening-tone, while the small figure behind it waits out of focus, reduced to the space around the screen.",
+    "prompt": "You sent a message at noon. It is now evening. The ticks say read. The reply has not come. Your phone has become the center of the room. What do you do?",
+    "choices": [
+      {
+        "key": "A",
+        "text": "Send two more messages.",
+        "resolution": "The second one is a question, the third is a joke about the silence. None of them bring the reply closer. Each one makes the silence heavier.",
+        "archetype": "reactive"
+      },
+      {
+        "key": "B",
+        "text": "Silence notifications and spiral quietly.",
+        "resolution": "The phone goes dark and your head takes over. You build a whole case against yourself. The case has no evidence but it has a lot of pages.",
+        "archetype": "avoidant"
+      },
+      {
+        "key": "C",
+        "text": "Check what you actually know.",
+        "resolution": "What you know: they read it. What you do not know: everything else. The list is short. The phone gets smaller the moment you write it down.",
+        "archetype": "clarifying"
+      },
+      {
+        "key": "D",
+        "text": "Put the phone down and go do something.",
+        "resolution": "You cook dinner. The reply comes while your hands are full. It says they were in class all day. The phone looks ordinary again, because it always was.",
+        "archetype": "regulated"
+      }
+    ]
+  },
+  {
+    "id": "3D",
+    "life_stage": "college",
+    "title": "The Personal Question",
+    "image_path": "/assets/images/3D-the-personal-question.png",
+    "image_alt": "Two figures face each other in soft light, the nearer one leaning in with casual posture while a thin incomplete arc hangs in the air between them, marking a boundary drawn at partial width by the figure on the receiving end.",
+    "prompt": "Someone you have known for two weeks just asked you a question about your family that you would not ask a stranger. Their tone is light. The question is not. What do you do?",
+    "choices": [
+      {
+        "key": "A",
+        "text": "Answer everything, right now.",
+        "resolution": "You lay it all out. It is a relief, for about ten seconds. Then you realize you have just handed two weeks of acquaintance the keys to the whole house.",
+        "archetype": "reactive"
+      },
+      {
+        "key": "B",
+        "text": "Change the subject.",
+        "resolution": "They follow your lead and the moment passes. You are safe. You are also alone with the part of you that wanted to answer.",
+        "archetype": "avoidant"
+      },
+      {
+        "key": "C",
+        "text": "Say that is a bigger question than they know.",
+        "resolution": "They pause. For the first time they look like they are measuring the question, not just asking it. A boundary stated honestly gives the other person somewhere real to stand.",
+        "archetype": "clarifying"
+      },
+      {
+        "key": "D",
+        "text": "Share the shape of it, not all of it.",
+        "resolution": "You say one true sentence and let it sit. They do not push. The boundary holds because you set it at the size you could stand by.",
+        "archetype": "regulated"
+      }
+    ]
+  },
+  {
+    "id": "3E",
+    "life_stage": "college",
+    "title": "The Party Crowd",
+    "image_path": "/assets/images/3E-the-party-crowd.png",
+    "image_alt": "A dense overlapping crowd fills the left of the frame, every figure leaning the same direction in saturated motion, while across the room two figures stand in calm, even light by a tall window, and one figure stands mid-floor between the two rooms.",
+    "prompt": "The party is loud and everyone is moving the same way. You are in the middle of it. Across the room, two people are talking quietly by the window. You know both rooms are real; you are only in one of them. What do you do?",
+    "choices": [
+      {
+        "key": "A",
+        "text": "Go louder than the room.",
+        "resolution": "You match the crowd and then overshoot it. For an hour it feels like belonging. By the end of the night you cannot remember a single conversation you had.",
+        "archetype": "reactive"
+      },
+      {
+        "key": "B",
+        "text": "Stay in the crowd and keep up.",
+        "resolution": "You stay where it is warm and familiar. The window group waves at you once. You wave back and stay put. The moment passes and you wonder about it on the way home.",
+        "archetype": "avoidant"
+      },
+      {
+        "key": "C",
+        "text": "Step out for air and see who is outside.",
+        "resolution": "You leave the center of the room, not the party. Outside, someone else is also taking a break. The quiet conversation is better than the loud one was.",
+        "archetype": "clarifying"
+      },
+      {
+        "key": "D",
+        "text": "Walk over to the two by the window.",
+        "resolution": "You cross the room without making a scene about it. The crowd keeps moving behind you. The window group makes space. Both rooms were real; now you are in the one you chose.",
+        "archetype": "regulated"
+      }
+    ]
+  },
+  {
+    "id": "4A",
+    "life_stage": "office",
+    "title": "The Meeting Room",
+    "image_path": "/assets/images/4A-the-meeting-room.png",
+    "image_alt": "Around a long meeting table, every nodding head is oriented toward a standing figure at the head of the room, while one seated figure's smaller contribution sits on the table unnoticed, picked out by the only point of clear light.",
+    "prompt": "The meeting is wrapping up. The proposal on the table came out of a discussion where you made the key point, but in the summary everyone is nodding at your colleague, who said it louder. What do you do?",
+    "choices": [
+      {
+        "key": "A",
+        "text": "Interrupt to correct the record.",
+        "resolution": "You get the credit and the room gets a moment of tension. People remember the interruption longer than the contribution.",
+        "archetype": "reactive"
+      },
+      {
+        "key": "B",
+        "text": "Let it go. It is not worth it.",
+        "resolution": "The meeting ends. The credit lands with your colleague, and something small and tired settles into your chest on the way back to your desk.",
+        "archetype": "avoidant"
+      },
+      {
+        "key": "C",
+        "text": "Restate the point with the specifics.",
+        "resolution": "You walk the room through the reasoning, step by step, including your colleague's part in it. The specifics carry the credit without anyone having to be accused.",
+        "archetype": "clarifying"
+      },
+      {
+        "key": "D",
+        "text": "Note the point was yours, then move on.",
+        "resolution": "One clean sentence, no heat in it, then back to the agenda. The record corrects itself. You look calmer than you feel, which is half of the skill.",
+        "archetype": "regulated"
+      }
+    ]
+  },
+  {
+    "id": "4B",
+    "life_stage": "office",
+    "title": "The Interrupter",
+    "image_path": "/assets/images/4B-the-interrupter.png",
+    "image_alt": "Two figures stand mid-meeting with overlapping blocks of sound colliding in the air between them, while around the table the rest of the room watches evenly, the whole frame held perfectly still.",
+    "prompt": "You are mid-sentence in the weekly meeting and your colleague starts talking over you. Again. It is the third time this month. The room is watching how you handle it. What do you do?",
+    "choices": [
+      {
+        "key": "A",
+        "text": "Talk louder to win the floor.",
+        "resolution": "Two people talking over each other, both getting louder. The room checks phones. Nobody won the floor; the floor just got noisy.",
+        "archetype": "reactive"
+      },
+      {
+        "key": "B",
+        "text": "Stop talking and let them have it.",
+        "resolution": "You cede the floor. It feels like keeping the peace. The peace is theirs, and your point never gets finished.",
+        "archetype": "avoidant"
+      },
+      {
+        "key": "C",
+        "text": "Wait, then say you were not finished.",
+        "resolution": "You let them finish their interruption. Then, evenly: \"I was not finished.\" The room looks up. You finish your point and it lands whole.",
+        "archetype": "clarifying"
+      },
+      {
+        "key": "D",
+        "text": "Hold your pause and keep eye contact.",
+        "resolution": "You do not raise your voice. You just stop, and look at them, and wait. The interruption runs out of fuel. They gesture for you to continue.",
+        "archetype": "regulated"
+      }
+    ]
+  },
+  {
+    "id": "4C",
+    "life_stage": "office",
+    "title": "The Email That Sounds Cold",
+    "image_path": "/assets/images/4C-the-email-that-sounds-cold.png",
+    "image_alt": "A single short line of message text hangs large in a dark frame whose walls visibly compress inward toward it, while a small figure below reads it again, boxed in by the narrowing room.",
+    "prompt": "Your manager sent: \"Can you send me the numbers when you get a chance.\" No greeting. No please. Full stop. You have read it eleven times. What do you do?",
+    "choices": [
+      {
+        "key": "A",
+        "text": "Reply with an apology.",
+        "resolution": "You apologize for nothing in particular and attach the numbers at 11pm. The next morning your manager replies: \"Thanks! Perfect.\" The email was fine. The 11pm was you.",
+        "archetype": "reactive"
+      },
+      {
+        "key": "B",
+        "text": "Do not reply and avoid them all day.",
+        "resolution": "You take the long route to the kitchen. By four o'clock they have asked in person. It turns out they just needed the numbers.",
+        "archetype": "avoidant"
+      },
+      {
+        "key": "C",
+        "text": "Check the tone against past emails.",
+        "resolution": "You scroll back. Every email from them is like this. Short, no greeting, full stop. The pattern was there the whole time; the threat was the interpretation, not the text.",
+        "archetype": "clarifying"
+      },
+      {
+        "key": "D",
+        "text": "Send the numbers and ask one question.",
+        "resolution": "You attach the file and write: \"Here you go. Should I add the Q3 breakdown?\" They reply in minutes, warmly. The email had no temperature until you gave it one.",
+        "archetype": "regulated"
+      }
+    ]
+  },
+  {
+    "id": "4D",
+    "life_stage": "office",
+    "title": "The Disagreement",
+    "image_path": "/assets/images/4D-the-disagreement.png",
+    "image_alt": "Two figures sit at opposite ends of a meeting table, each behind a block of a plan angled toward the other along a collision line, a thin gap of empty table holding the exact distance between them.",
+    "prompt": "You and a colleague disagree about the approach for the next quarter. You both have data. You both have conviction. The meeting has fifteen minutes left. What do you do?",
+    "choices": [
+      {
+        "key": "A",
+        "text": "Double down on your data.",
+        "resolution": "You present harder. They present harder back. The meeting ends with both datasets intact and no decision made. Conviction is not a plan.",
+        "archetype": "reactive"
+      },
+      {
+        "key": "B",
+        "text": "Agree to revisit it later.",
+        "resolution": "Later becomes next week. The decision gets made without you, in a smaller meeting, by whoever happened to be in the room.",
+        "archetype": "avoidant"
+      },
+      {
+        "key": "C",
+        "text": "Ask which assumptions differ.",
+        "resolution": "Ten minutes of questions and the disagreement turns out to be one assumption each of you made silently. Now there are two assumptions on the table instead of two egos.",
+        "archetype": "clarifying"
+      },
+      {
+        "key": "D",
+        "text": "State your view once, then ask for theirs.",
+        "resolution": "You give your position cleanly and then genuinely ask for theirs. Being heard makes them able to hear you. The meeting ends with a hybrid on the table.",
+        "archetype": "regulated"
+      }
+    ]
+  },
+  {
+    "id": "4E",
+    "life_stage": "office",
+    "title": "The Meeting Goes Silent",
+    "image_path": "/assets/images/4E-the-meeting-goes-silent.png",
+    "image_alt": "A locked wide view down a long silent table: every figure looks down at their notes or the wall, and at the front of the room a plan drawn as a simple diagram shows one visibly missing piece that no one is pointing at.",
+    "prompt": "The lead has just presented a plan that will not work, and everyone in the room seems to know it. Nobody is saying anything. Everyone is looking at their notes, or the wall, or each other. What do you do?",
+    "choices": [
+      {
+        "key": "A",
+        "text": "Say the plan is a problem, bluntly.",
+        "resolution": "The silence breaks into defensiveness. The lead asks you to elaborate with a tone that means they would rather you did not. The room picks sides instead of picking apart the plan.",
+        "archetype": "reactive"
+      },
+      {
+        "key": "B",
+        "text": "Stay silent with everyone else.",
+        "resolution": "The meeting closes with nods. You all leave knowing. Nobody says it out loud. Next week it will be everyone's problem, still.",
+        "archetype": "avoidant"
+      },
+      {
+        "key": "C",
+        "text": "Raise the one specific risk you see.",
+        "resolution": "One concrete risk, named. Not \"this will not work\" but \"this part has no owner.\" Two other people nod. The silence cracks around the specifics.",
+        "archetype": "clarifying"
+      },
+      {
+        "key": "D",
+        "text": "Ask the quietest person what they think.",
+        "resolution": "The quietest person in the room says exactly what everyone was holding. Giving the floor away bought the truth. The plan gets revised before it ever ships.",
+        "archetype": "regulated"
+      }
+    ]
+  },
+  {
+    "id": "5A",
+    "life_stage": "middle-age",
+    "title": "The Dinner Table",
+    "image_path": "/assets/images/5A-the-dinner-table.png",
+    "image_alt": "Under one low warm lamp a cleared dinner table holds a circle of settled figures in a slow, honest hour; one figure has just said something difficult and sits slightly bowed while every other face has turned, gently, toward the same empty chair.",
+    "prompt": "Dinner is over and the conversation has slowed to that low, honest register it only reaches after the plates are cleared. Someone has just said something difficult, and now everyone is looking at you. What do you do?",
+    "choices": [
+      {
+        "key": "A",
+        "text": "Offer a solution immediately.",
+        "resolution": "You fill the pause with advice. It is good advice. It is also the fastest way to end a conversation that was not asking to be ended. The table moves on to lighter things.",
+        "archetype": "reactive"
+      },
+      {
+        "key": "B",
+        "text": "Clear the plates quietly.",
+        "resolution": "You step into the kitchen and the moment steps with you, or maybe it closes without you. When you return, the subject has changed.",
+        "archetype": "avoidant"
+      },
+      {
+        "key": "C",
+        "text": "Ask what that has been like.",
+        "resolution": "They talk for another ten minutes, longer than anyone expected. The difficult thing gets examined instead of solved. It turns out that was the ask.",
+        "archetype": "clarifying"
+      },
+      {
+        "key": "D",
+        "text": "Say you are glad they told you.",
+        "resolution": "You do not fix anything. You receive it. The room stays quiet and warm, and the person across from you looks lighter than they have all evening.",
+        "archetype": "regulated"
+      }
+    ]
+  },
+  {
+    "id": "5B",
+    "life_stage": "middle-age",
+    "title": "The Family Argument",
+    "image_path": "/assets/images/5B-the-family-argument.png",
+    "image_alt": "At opposite ends of a dinner table two figures lean outward toward the frame's edges, each turned expectantly toward a third figure seated exactly between them under the lamp, recruited into a fight that is not theirs.",
+    "prompt": "Your sister and your partner are arguing across the table, and they both keep turning to you to confirm their version. You are being recruited into an argument you did not start. What do you do?",
+    "choices": [
+      {
+        "key": "A",
+        "text": "Side with the person you agree with.",
+        "resolution": "The argument resolves in your favor and one of them goes quiet. Later, the quiet one says they felt outnumbered. The argument won; the evening lost.",
+        "archetype": "reactive"
+      },
+      {
+        "key": "B",
+        "text": "Excuse yourself from the table.",
+        "resolution": "You leave them to it. The argument continues without you and ends in a draw that satisfies nobody. The table is colder when you come back.",
+        "archetype": "avoidant"
+      },
+      {
+        "key": "C",
+        "text": "Ask each of them what they actually want.",
+        "resolution": "It turns out they want the same thing and are arguing about the calendar, not the value. Naming the want deflates the fight. They are almost sheepish.",
+        "archetype": "clarifying"
+      },
+      {
+        "key": "D",
+        "text": "Refuse the referee role, kindly.",
+        "resolution": "You say you love them both and you are not the judge of this one. The argument wobbles, then becomes theirs to finish. It finishes better for not having a third side.",
+        "archetype": "regulated"
+      }
+    ]
+  },
+  {
+    "id": "5C",
+    "life_stage": "middle-age",
+    "title": "The Old Story",
+    "image_path": "/assets/images/5C-the-old-story.png",
+    "image_alt": "At a family table one figure tells a familiar story with animated hands while a faint, faded overlay of a much smaller figure drifts across the top of the frame; the present-day listener stays anchored and level, not chasing it.",
+    "prompt": "At a family gathering, your mother starts telling the story again. The one about you, age eight, that everyone knows. The person in the story does not feel like you anymore, and the story is not kind. What do you do?",
+    "choices": [
+      {
+        "key": "A",
+        "text": "Cut her off.",
+        "resolution": "The story stops mid-sentence. The table goes quiet. You have won a silence, which is not the same as winning an argument.",
+        "archetype": "reactive"
+      },
+      {
+        "key": "B",
+        "text": "Smile through it again.",
+        "resolution": "You perform the laugh you have performed for years. It costs less each time. That is what worries you.",
+        "archetype": "avoidant"
+      },
+      {
+        "key": "C",
+        "text": "Ask what she likes about that story.",
+        "resolution": "She pauses, then says it reminds her of when you were small. The story was never about the embarrassing part. It was about her missing the smallness. It lands differently now.",
+        "archetype": "clarifying"
+      },
+      {
+        "key": "D",
+        "text": "Later, tell her how the story lands.",
+        "resolution": "Not at the table. The next day, quietly: \"I know you love that story, but I flinch at it.\" She is quiet for a long moment, then says she had not thought of it that way. She never tells it again.",
+        "archetype": "regulated"
+      }
+    ]
+  },
+  {
+    "id": "5D",
+    "life_stage": "middle-age",
+    "title": "The Unsolicited Advice",
+    "image_path": "/assets/images/5D-the-unsolicited-advice.png",
+    "image_alt": "Two figures sit across from each other in warm even light; the speaker leans forward mid-description with open hands, while three small finished objects hover at the listener's eye level, waiting and ungiven.",
+    "prompt": "Your friend is telling you about a problem at work, and it is taking everything you have not to interrupt. You have three solutions ready. They have not finished describing the problem. What do you do?",
+    "choices": [
+      {
+        "key": "A",
+        "text": "Offer all three solutions at once.",
+        "resolution": "You list them, rapid fire. Your friend nods and stops talking. The problem is now a project you have assigned them. The connection in their voice is gone.",
+        "archetype": "reactive"
+      },
+      {
+        "key": "B",
+        "text": "Wait for them to ask, then stay vague.",
+        "resolution": "They never ask. You leave the conversation feeling like you failed to help. They leave feeling heard, which was the actual assignment.",
+        "archetype": "avoidant"
+      },
+      {
+        "key": "C",
+        "text": "Ask what they have already tried.",
+        "resolution": "They list three things. One of them is your best solution, already attempted. The advice you were holding was evidence you had not been listening.",
+        "archetype": "clarifying"
+      },
+      {
+        "key": "D",
+        "text": "Listen fully, then ask what would help.",
+        "resolution": "You let the problem finish. Then: \"Do you want ideas or an ear?\" They want an ear, mostly, and one idea. Your advice lands because it was invited.",
+        "archetype": "regulated"
+      }
+    ]
+  },
+  {
+    "id": "5E",
+    "life_stage": "middle-age",
+    "title": "The Success Question",
+    "image_path": "/assets/images/5E-the-success-question.png",
+    "image_alt": "An evening porch after good news: one figure talks brightly while the other sits still, two parallel lines lying side by side across the foreground, unranked, while the faint shapes of comparisons dissolve at the very edges of the frame.",
+    "prompt": "An old friend just told you about their new house, their promotion, their children's achievements. You are happy for them. You are also doing the math on your own life, and the math is not settling. What do you do?",
+    "choices": [
+      {
+        "key": "A",
+        "text": "Mentally list where you fall short.",
+        "resolution": "The comparison runs its full course, page by page. By the end of the evening you have a complete inventory of your deficits and a cold feeling in your chest.",
+        "archetype": "reactive"
+      },
+      {
+        "key": "B",
+        "text": "Change the subject to something safe.",
+        "resolution": "You steer to weather, then leave early. The question follows you home. Unasked questions do not get smaller for being avoided; they just get better at hiding.",
+        "archetype": "avoidant"
+      },
+      {
+        "key": "C",
+        "text": "Ask what they gave up to get here.",
+        "resolution": "They laugh, then talk about the years they missed, the health scare, the thing they let go. The house gets a cost. Their life was never the brochure.",
+        "archetype": "clarifying"
+      },
+      {
+        "key": "D",
+        "text": "Notice your own path, without ranking.",
+        "resolution": "You let both lives sit side by side, unranked. The evening ends warm. On the drive home, the math stops running, and the road is just the road.",
+        "archetype": "regulated"
+      }
+    ]
+  }
+]

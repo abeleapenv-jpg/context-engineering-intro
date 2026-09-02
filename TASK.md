@@ -1,8 +1,45 @@
 # TASK.md — WORKSPACE (Quietfield + Animate UI)
 
-Last updated: 2026-08-29
+Last updated: 2026-09-02
 
-## Session status: FINALIZED ✅
+## Quietfield — illustration-based rebuild (quietfield/) 🚧 IN PROGRESS
+
+Per the Illustration-Based Rebuild Master Plan (supersedes the 3D/animation
+layer; `site/` is now the archived 3D build and is not touched by this work).
+
+- [x] Scaffold `quietfield/`: React 19 + Vite 8 + Tailwind v4, four tokens in
+      `@theme`, HashRouter, fonts (Archivo/Fraunces/IBM Plex Mono)
+- [x] `src/data/scenarios.json`: all 25 scenarios (1A per the master plan's
+      worked example verbatim; 24 ported from `site/src/content/scenarios/`
+      with alt text + archetypes added) — `npm run verify:data` green
+- [x] UX polish layer per mission brief: entry fade/slide pacing, hush state
+      (nav + breadcrumbs dim to opacity-30), archival metadata tag, hairline
+      choice buttons with rust hover + 1–4 keyboard selection + depression,
+      afterthought resolution (unchosen fade out, cream resolution, quiet
+      Continue, no redirect until pressed) — `Scenario.jsx` / `ChoiceButton.jsx`
+- [x] Persistence: `lib/progress.js` adapter — Supabase `progress` +
+      `choices_made` (upsert onConflict `(user_id, scenario_id)`), local
+      localStorage mirror when unconfigured; resume = first uncompleted;
+      re-query after Continue. `supabase/schema.sql` written with RLS
+- [x] Auth: `Auth.jsx` login/signup toggle gated on `SUPABASE_CONFIGURED`;
+      local mode stays open with honest notice (master plan §7 task 2's
+      unverified-Supabase warning honored)
+- [x] Pages: Home (resume card + stage rings), LifeStageIndex (progress,
+      breadcrumbs), Scenario, Profile (field notes + sign out / clear local),
+      About, Contact, ThankYou (copyable pattern note), 404; unique titles;
+      favicon (M monogram); footer with closing line
+- [x] Illustration pipeline: style lock confirmed on 1A; scripts/
+      normalize-images.py (exact 1200×1500) + check-palette.py (four-token
+      hull audit, 0.00% off-palette) + ILLUSTRATION_BRIEFS.md (all 25 briefs)
+- [x] Illustrations generated + audited: 1A–2E (10 of 25)
+- [ ] Illustrations 3A–5E (15 remaining — image-generation turn cap hit;
+      briefs are final in ILLUSTRATION_BRIEFS.md; regenerate next session,
+      then run normalize + palette audit + verify:data)
+- [ ] Run `supabase/schema.sql` against the real project and verify RLS
+      policies in the dashboard (master plan §7 task 2 / §8 risk 5)
+- [ ] Deploy to Vercel
+
+## Session status: FINALIZED ✅ (previous session)
 - [x] All session work committed and pushed to `arena/01a043f1-context-engineering-intro`
 - [x] Pull request opened: **PR #1** — "Quietfield 25-scenario experience + Animate UI component library (MVP)" (base `main`)
 - [x] Final gates: Quietfield 73 tests + Animate UI 31 tests green, lint/typecheck/build clean on both projects
