@@ -39,7 +39,8 @@ layer; `site/` is now the archived 3D build and is not touched by this work).
       0 warnings. ILLUSTRATION_BRIEFS.md marked complete (2026-09-03).
 - [ ] Run `supabase/schema.sql` against the real project and verify RLS
       policies in the dashboard (master plan §7 task 2 / §8 risk 5)
-- [ ] Deploy to Vercel
+- [ ] Deploy to Vercel (exact steps in quietfield/DEPLOYMENT.md; production
+      build export available as quietfield-dist-v1.0.0.zip)
 
 ## Session status: FINALIZED ✅ (previous session)
 - [x] All session work committed and pushed to `arena/01a043f1-context-engineering-intro`
