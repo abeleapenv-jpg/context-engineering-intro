@@ -412,7 +412,7 @@
     "life_stage": "college",
     "title": "The Unanswered Message",
     "image_path": "/assets/images/3C-the-unanswered-message.png",
-    "image_alt": "A phone fills most of the frame, its single read message glowing against a room split flat into a cool day-tone and a darker evening-tone, while the small figure behind it waits out of focus, reduced to the space around the screen.",
+    "image_alt": "A phone fills most of the frame with a single read message, against a room split flat into a lighter day-tone and a darker evening-tone, while the small figure waiting on it sits at the bottom edge, rendered smaller than the screen itself.",
     "prompt": "You sent a message at noon. It is now evening. The ticks say read. The reply has not come. Your phone has become the center of the room. What do you do?",
     "choices": [
       {
