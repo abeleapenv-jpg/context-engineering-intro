@@ -1,6 +1,6 @@
 # TASK.md — WORKSPACE (Quietfield + Animate UI)
 
-Last updated: 2026-09-02
+Last updated: 2026-09-03
 
 ## Quietfield — illustration-based rebuild (quietfield/) 🚧 IN PROGRESS
 
@@ -31,13 +31,12 @@ layer; `site/` is now the archived 3D build and is not touched by this work).
 - [x] Illustration pipeline: style lock confirmed on 1A; scripts/
       normalize-images.py (exact 1200×1500) + check-palette.py (four-token
       hull audit, 0.00% off-palette) + ILLUSTRATION_BRIEFS.md (all 25 briefs)
-- [x] Illustrations generated + audited: 1A–2E (10), 3A–3C (3), 3D–5C (10) —
-      23 of 25; every batch gated by normalize (exact 1200×1500), palette hull
-      audit (0.00% off-palette), and check-detail.py restraint envelope vs the
-      1A–2E baseline (edge 0.020–0.048; batches measured 0.019–0.035)
-- [ ] Final illustration batch: 5D, 5E (2 remaining; briefs final in
-      ILLUSTRATION_BRIEFS.md; rerun all three audits, then verify:data should
-      report 0 illustration warnings)
+- [x] Illustration pipeline COMPLETE: all 25 of 25 (1A–2E, 3A–3C, 3D–5C,
+      5D–5E); every batch gated by normalize (exact 1200×1500), palette hull
+      audit (0.00% off-palette across the whole set), and check-detail.py
+      restraint envelope vs the 1A–2E baseline (edge 0.020–0.048; all 25
+      images measure 0.019–0.041). verify:data: 25 scenarios valid,
+      0 warnings. ILLUSTRATION_BRIEFS.md marked complete (2026-09-03).
 - [ ] Run `supabase/schema.sql` against the real project and verify RLS
       policies in the dashboard (master plan §7 task 2 / §8 risk 5)
 - [ ] Deploy to Vercel

@@ -1,5 +1,12 @@
 # QUIETFIELD — ILLUSTRATION BRIEFS (all 25)
 
+**Status: COMPLETE — 25 of 25 generated and audited (2026-09-03).** Every
+image: exact 1200×1500 (4:5), 0.00% off-palette against the four-token hull,
+edge density inside the 1A–2E restraint envelope (baseline 0.020–0.048,
+ceiling 0.062; the full set measures 0.019–0.041). Re-verify any time:
+`python3 scripts/check-palette.py` · `python3 scripts/check-detail.py` ·
+`npm run verify:data` (reports 0 illustration warnings).
+
 Each brief pairs the scenario's data entry (`src/data/scenarios.json`) with its
 illustration composition, per the master plan's worked-example structure. Every
 device maps to a psychological meaning from the Section 2 semantic language
