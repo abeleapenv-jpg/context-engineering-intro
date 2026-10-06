@@ -43,7 +43,7 @@ export default function ProfilePage({ session, field, refreshField }) {
           ? session
             ? `Signed in as ${session.user.email}. Your progress and choices are protected by Row Level Security: only this account can read them.`
             : 'You are not signed in. Sign in to keep your field across devices.'
-          : 'This build runs in local mode: no Supabase project is connected, so your field is saved in this browser only (it survives refresh). Connect a project with VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY to enable accounts.'}
+          : 'Your field is saved privately in this browser: which scenarios you have walked and which choice you made. Nothing else is recorded, and nothing leaves your device.'}
       </p>
 
       {SUPABASE_CONFIGURED && !session ? (

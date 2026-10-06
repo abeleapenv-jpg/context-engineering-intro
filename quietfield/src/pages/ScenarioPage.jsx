@@ -64,11 +64,7 @@ export default function ScenarioPage({ field, onDecide, refreshField }) {
           restore on hover/focus or once the scenario resolves. */}
       <nav
         aria-label="Breadcrumb"
-        className={[
-          'mx-auto w-full max-w-6xl px-6 pb-2 pt-8 sm:px-10 lg:px-14',
-          'transition-opacity duration-700 ease-out motion-reduce:transition-none',
-        ].join(' ')}
-        data-hush-anchor="breadcrumbs"
+        className="mx-auto w-full max-w-6xl px-6 pb-2 pt-8 sm:px-10 lg:px-14"
       >
         <BreadcrumbTrail stageId={scenario.life_stage} scenarioId={scenario.id} />
       </nav>

@@ -34,7 +34,7 @@ export default function Nav({ session }) {
         aria-label="Primary"
         className="mx-auto flex w-full max-w-6xl items-center justify-between gap-6 px-6 py-5 sm:px-10 lg:px-14"
       >
-        <Link to="/" className="group flex items-baseline gap-3">
+        <Link to="/" aria-label="Quietfield home" className="group flex items-baseline gap-3">
           {/* Rust square: the one accent, used as a shape, never as text. */}
           <span
             aria-hidden="true"
@@ -44,12 +44,18 @@ export default function Nav({ session }) {
             Quietfield
           </span>
           <span className="hidden font-mono text-sm font-bold uppercase tracking-[0.14em] text-qf-tan sm:inline">
-            Musterfield Labs
+            Masterfield Labs
           </span>
         </Link>
 
-        <div className="flex items-center gap-5 sm:gap-7">
-          <NavLink to="/" end className={linkClass}>
+        {/* Mobile: the wordmark above is the home link, so "The Field" is
+            redundant below sm; the row wraps instead of overflowing. */}
+        <div className="flex flex-wrap items-center justify-end gap-x-4 gap-y-2 sm:gap-x-7">
+          <NavLink
+            to="/"
+            end
+            className={({ isActive }) => `${linkClass({ isActive })} hidden sm:inline-flex`}
+          >
             The Field
           </NavLink>
           <NavLink to="/about" className={linkClass}>

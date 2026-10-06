@@ -1,6 +1,6 @@
 # TASK.md — WORKSPACE (Quietfield + Animate UI)
 
-Last updated: 2026-09-03
+Last updated: 2026-10-06
 
 ## Quietfield — illustration-based rebuild (quietfield/) 🚧 IN PROGRESS
 
@@ -37,6 +37,24 @@ layer; `site/` is now the archived 3D build and is not touched by this work).
       restraint envelope vs the 1A–2E baseline (edge 0.020–0.048; all 25
       images measure 0.019–0.041). verify:data: 25 scenarios valid,
       0 warnings. ILLUSTRATION_BRIEFS.md marked complete (2026-09-03).
+- [x] Owner walk-through approval (2026-09-03): full preview review, 1A–5E;
+      visual tone, pacing, and illustrations accepted — locked as-is,
+      no further regeneration loops.
+- [x] FINAL PRE-PUBLISH AUDIT (2026-10-06): brand typo corrected everywhere
+      (Musterfield -> Masterfield: nav, footer, home, about, contact, favicon
+      comment, package.json); mobile nav overflow fixed (wrapping link row,
+      wordmark becomes the aria-labelled home link, redundant "The Field"
+      link hidden below sm); Field Notes developer copy replaced with a plain
+      privacy note; OG/Twitter sharing metadata added to index.html; inert
+      breadcrumb attribute removed. NEW scripts/smoke-test.mjs (dev-only
+      jsdom harness, `npm run build && npm run smoke`) drives the real
+      production bundle through the full visitor journey — home, all 25
+      scenarios (title/prompt/tag/4 choices/resolution/Continue/next-route
+      chain), completion page with 25/25 persisted, 404, stage index counts,
+      home completion state — PASS, zero unexpected console/runtime errors.
+      Asset audits re-verified: palette 25/25 at 0.00% off-palette, restraint
+      envelope clean, verify:data 0 warnings. Export zip rebuilt from the
+      audited build.
 - [ ] Run `supabase/schema.sql` against the real project and verify RLS
       policies in the dashboard (master plan §7 task 2 / §8 risk 5)
 - [ ] Deploy to Vercel (exact steps in quietfield/DEPLOYMENT.md; production

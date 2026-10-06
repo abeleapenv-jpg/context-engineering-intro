@@ -3,12 +3,13 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "Quietfield - twenty-five social scenarios, one illustration each. A Musterfield Labs project.",
+  "description": "Quietfield - twenty-five social scenarios, one illustration each. A Masterfield Labs project.",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "verify:data": "node scripts/verify-scenarios.mjs"
+    "verify:data": "node scripts/verify-scenarios.mjs",
+    "smoke": "node scripts/smoke-test.mjs"
   },
   "dependencies": {
     "@fontsource-variable/archivo": "^5.2.5",
@@ -22,6 +23,7 @@
   "devDependencies": {
     "@tailwindcss/vite": "^4.1.0",
     "@vitejs/plugin-react": "^6.1.0",
+    "jsdom": "^30.1.2",
     "tailwindcss": "^4.1.0",
     "vite": "^8.2.2"
   }

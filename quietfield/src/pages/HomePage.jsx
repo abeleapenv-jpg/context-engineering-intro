@@ -37,7 +37,7 @@ export default function HomePage({ field }) {
     <main className="mx-auto w-full max-w-6xl px-6 pb-28 pt-16 sm:px-10 lg:px-14 lg:pt-24">
       {/* Masthead. Asymmetry: the title block owns the left two thirds. */}
       <p className="font-mono text-sm font-bold uppercase tracking-[0.18em] text-qf-tan">
-        A Musterfield Labs project
+        A Masterfield Labs project
       </p>
       <h1 className="mt-6 font-display text-5xl font-extrabold uppercase leading-[0.95] tracking-[0.06em] text-qf-cream sm:text-7xl">
         Quiet&shy;field

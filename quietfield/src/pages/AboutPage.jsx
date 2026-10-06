@@ -8,7 +8,7 @@ export default function AboutPage() {
   return (
     <main className="mx-auto w-full max-w-4xl px-6 pb-28 pt-16 sm:px-10">
       <p className="font-mono text-sm font-bold uppercase tracking-[0.18em] text-qf-tan">
-        ABOUT // A MUSTERFIELD LABS PROJECT
+        ABOUT // A MASTERFIELD LABS PROJECT
       </p>
       <h1 className="mt-4 font-display text-4xl font-extrabold uppercase tracking-[0.04em] text-qf-cream">
         One illustration, one decision

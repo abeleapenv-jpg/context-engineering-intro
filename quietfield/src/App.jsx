@@ -154,7 +154,7 @@ function Shell() {
             {CLOSING_LINE}
           </p>
           <p className="font-mono text-sm font-bold uppercase tracking-[0.18em] text-qf-tan">
-            Quietfield · A Musterfield Labs project
+            Quietfield · A Masterfield Labs project
           </p>
         </div>
       </footer>
