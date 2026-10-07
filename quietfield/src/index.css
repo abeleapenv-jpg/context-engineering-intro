@@ -1,0 +1,71 @@
+@import 'tailwindcss';
+
+/*
+ * QUIETFIELD DESIGN TOKENS (master plan section 4)
+ * Exactly four colors. Rust is never body text on ink (contrast 2.56:1);
+ * tan is large/UI labels only (>=14px bold or >=18px regular); body copy on
+ * ink is always cream (13.66:1). Corners <=2px, no drop shadows (1px tan
+ * hairlines instead), no gradients, no stock icons.
+ */
+@theme {
+  --color-qf-ink: #1e1e17;
+  --color-qf-cream: #efe7db;
+  --color-qf-rust: #904a30;
+  --color-qf-tan: #848177;
+
+  --font-display: 'Archivo Variable', 'Archivo', 'Arial Narrow', sans-serif;
+  --font-body: 'Fraunces Variable', 'Fraunces', Georgia, serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+}
+
+@layer base {
+  html {
+    background-color: var(--color-qf-ink);
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background-color: var(--color-qf-ink);
+    color: var(--color-qf-cream);
+    font-family: var(--font-body);
+    font-size: 18px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background-color: var(--color-qf-cream);
+    color: var(--color-qf-ink);
+  }
+
+  :focus-visible {
+    outline: 1px solid var(--color-qf-cream);
+    outline-offset: 3px;
+  }
+
+  h1,
+  h2,
+  h3,
+  p {
+    margin: 0;
+  }
+}
+
+/*
+ * Reduced-motion hook (master plan section 3): nothing on the site animates
+ * beyond short opacity/transform transitions, and every one of them collapses
+ * to an instant state here. The hook stays in place so any future motion is
+ * forced through the same gate.
+ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+    animation: none !important;
+    scroll-behavior: auto !important;
+  }
+}
