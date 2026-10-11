@@ -38,7 +38,11 @@ function writeLocal(state) {
 /** Shape: { completed: string[], choices: Record<scenarioId, choiceKey>, counts } */
 function normalize(progressRows, choiceRows) {
   const valid = new Set(SCENARIOS.map((s) => s.id));
-  const completed = progressRows.map((r) => r.scenario_id).filter((id) => valid.has(id));
+  // Set-dedupe guards the counts against duplicate rows ever appearing
+  // (exploration is participation; one row per scenario, never more).
+  const completed = [
+    ...new Set(progressRows.map((r) => r.scenario_id).filter((id) => valid.has(id))),
+  ];
   const choices = {};
   const counts = { reactive: 0, avoidant: 0, clarifying: 0, regulated: 0 };
   for (const row of choiceRows) {

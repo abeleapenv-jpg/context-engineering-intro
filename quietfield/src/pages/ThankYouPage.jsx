@@ -1,8 +1,11 @@
-import { useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 
+import InviteButton from '../components/InviteButton';
 import usePageTitle from '../lib/usePageTitle';
-import { SCENARIOS, CLOSING_LINE, fieldNotesSentence } from '../lib/scenarios';
+import { buildFieldCard, canvasAvailable } from '../lib/fieldCard';
+import { readTheirChoices } from '../lib/walkCode';
+import { SCENARIOS, CLOSING_LINE, STUDIO_CREDIT, fieldNotesSentence } from '../lib/scenarios';
 
 /*
  * Thank-you / completion page (pre-launch checklist #9). No stats brag, no
@@ -12,6 +15,13 @@ import { SCENARIOS, CLOSING_LINE, fieldNotesSentence } from '../lib/scenarios';
 export default function ThankYouPage({ field }) {
   usePageTitle('The field is quiet — Quietfield');
   const [copied, setCopied] = useState(false);
+  const [saved, setSaved] = useState(false);
+  const savedTimerRef = useRef(null);
+  // jsdom (smoke test) has no canvas: the card button hides entirely there.
+  const cardSupported = useMemo(() => canvasAvailable(), []);
+
+  // The "Saved" label is momentary; its timer never outlives the page.
+  useEffect(() => () => clearTimeout(savedTimerRef.current), []);
 
   if (field.completed.length < SCENARIOS.length) {
     // Not everything is walked yet - this page is only for the finished walk.
@@ -30,6 +40,40 @@ export default function ThankYouPage({ field }) {
     }
   }
 
+  // Field card (engagement Phase 2): share where the platform allows,
+  // download otherwise. Quiet on any failure - no error surfaces here.
+  async function saveCard() {
+    try {
+      const blob = await buildFieldCard({ note, counts: field.counts, studioCredit: STUDIO_CREDIT });
+      const file = new File([blob], 'quietfield-field-card.png', { type: 'image/png' });
+      let shared = false;
+      if (navigator.canShare?.({ files: [file] })) {
+        try {
+          await navigator.share({ files: [file] });
+          shared = true;
+        } catch (err) {
+          if (err?.name === 'AbortError') return; // the walker changed their mind
+          /* any other share failure falls through to the plain download */
+        }
+      }
+      if (!shared) {
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'quietfield-field-card.png';
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        window.setTimeout(() => URL.revokeObjectURL(url), 0);
+      }
+      setSaved(true);
+      clearTimeout(savedTimerRef.current);
+      savedTimerRef.current = setTimeout(() => setSaved(false), 2400);
+    } catch {
+      /* stay quiet: the card is a gift, not a requirement */
+    }
+  }
+
   return (
     <main className="mx-auto w-full max-w-4xl px-6 pb-28 pt-24 sm:px-10">
       <p className="font-mono text-sm font-bold uppercase tracking-[0.18em] text-qf-tan">
@@ -43,21 +87,50 @@ export default function ThankYouPage({ field }) {
         <p className="font-body text-2xl leading-relaxed text-qf-cream">{note}</p>
       </blockquote>
 
-      <div className="mt-8">
+      <div className="mt-8 flex flex-wrap items-center gap-4">
         <button
           type="button"
           onClick={copyNote}
           className={[
             'cursor-pointer rounded-[2px] border border-[#848177]/40 px-8 py-3',
             'font-display text-sm font-bold uppercase tracking-[0.2em] text-qf-cream',
-            'transition-[border-color,transform] duration-300',
+            'transition-[border-color,translate] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]',
             'hover:border-[#904A30] focus-visible:border-[#904A30] focus-visible:outline-none',
-            'active:translate-y-[1px]',
+            'active:translate-y-[1px] motion-reduce:transition-none',
           ].join(' ')}
         >
           {copied ? 'Copied' : 'Copy this note'}
         </button>
+        {cardSupported ? (
+          <button
+            type="button"
+            onClick={saveCard}
+            className={[
+              'cursor-pointer rounded-[2px] border border-[#848177]/40 px-8 py-3',
+              'font-display text-sm font-bold uppercase tracking-[0.2em] text-qf-cream',
+              'transition-[border-color,translate] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]',
+              'hover:border-[#904A30] focus-visible:border-[#904A30] focus-visible:outline-none',
+              'active:translate-y-[1px] motion-reduce:transition-none',
+            ].join(' ')}
+          >
+            {saved ? 'Saved' : 'Save your field card'}
+          </button>
+        ) : null}
       </div>
+
+      {/* Walk-together (engagement Phase 3): invite a friend, or - when the
+          visitor arrived through an invitation - see where you differed. */}
+      <InviteButton choices={field.choices} />
+      {readTheirChoices() !== null ? (
+        <p className="mt-6 font-mono text-sm font-bold uppercase tracking-[0.18em] text-qf-tan">
+          <Link
+            to="/together"
+            className="transition-colors duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:text-qf-cream focus-visible:text-qf-cream motion-reduce:transition-none"
+          >
+            See where you differed
+          </Link>
+        </p>
+      ) : null}
 
       <p className="mt-14 max-w-prose font-body text-xl leading-relaxed text-qf-cream">
         {CLOSING_LINE}

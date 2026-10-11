@@ -55,6 +55,16 @@ layer; `site/` is now the archived 3D build and is not touched by this work).
       Asset audits re-verified: palette 25/25 at 0.00% off-palette, restraint
       envelope clean, verify:data 0 warnings. Export zip rebuilt from the
       audited build.
+- [x] Progressive disclosure + exploration tracker (2026-10-09, per UX
+      engineer brief): aria-expanded/aria-controls wired from the chosen
+      ChoiceButton to the outcome region (a11y for the reveal); exploration
+      counter ("N OF 25 EXPLORED") added to the scenario orientation row,
+      dimming with the hush during decisions — participation only, never
+      correctness; normalize() dedupes completed ids as a double-count guard.
+      Data schema unchanged (prompt vs choices[].resolution was already
+      separated). Smoke test extended: skip-records-nothing, rapid
+      double-click is a no-op, aria-controls resolves, no duplicate rows,
+      counter 0 -> 25. All gates green (build, verify:data, smoke 8/8).
 - [ ] Run `supabase/schema.sql` against the real project and verify RLS
       policies in the dashboard (master plan §7 task 2 / §8 risk 5)
 - [ ] Deploy to Vercel (exact steps in quietfield/DEPLOYMENT.md; production

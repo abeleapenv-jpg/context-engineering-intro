@@ -1,7 +1,7 @@
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import ProgressBar from '../components/ProgressBar';
-import StageRing from '../components/StageRing';
 import usePageTitle from '../lib/usePageTitle';
 import {
   CLOSING_LINE,
@@ -16,6 +16,10 @@ import {
  * Home: the field index. Surfaces the silent resume logic as a quiet card
  * naming the next scenario (master plan section 10), the five life stages
  * with progress rings, and the closing lesson.
+ *
+ * Engagement layer: the stage rings draw themselves in (stroke-dashoffset)
+ * the first time they scroll into view. The ring lives here as
+ * InViewStageRing so StageRing.jsx stays untouched.
  */
 const STAGE_LINES = {
   childhood: 'Possession, laughter, and the first closed circles.',
@@ -24,6 +28,73 @@ const STAGE_LINES = {
   office: 'Credit, interruption, and the plan nobody questions.',
   'middle-age': 'Listening, old stories, and presence over advice.',
 };
+
+/**
+ * One IntersectionObserver per ring. Lazily initializes as "already in
+ * view" when IntersectionObserver is undefined (jsdom smoke test), so such
+ * environments start fully drawn. Disconnects after the first intersection
+ * and in the effect cleanup.
+ */
+function useInViewOnce() {
+  const ref = useRef(null);
+  const [inView, setInView] = useState(() => typeof IntersectionObserver === 'undefined');
+
+  useEffect(() => {
+    if (typeof IntersectionObserver === 'undefined') return undefined;
+    const node = ref.current;
+    if (!node) return undefined;
+    const observer = new IntersectionObserver(
+      (entries, obs) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            setInView(true);
+            obs.disconnect();
+          }
+        }
+      },
+      { threshold: 0.4, rootMargin: '0px 0px -8% 0px' },
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  return [ref, inView];
+}
+
+/**
+ * Same look as StageRing (36px, r=15, 1px tan track, 2px rust fill, butt
+ * caps, rotated to start at 12 o'clock), but the fill draws in from empty
+ * once the ring enters the viewport.
+ */
+function InViewStageRing({ done, total, index }) {
+  const [ref, inView] = useInViewOnce();
+  const r = 15;
+  const C = 2 * Math.PI * r;
+  const pct = total > 0 ? done / total : 0;
+  return (
+    <span ref={ref} aria-hidden="true" className="block shrink-0">
+      <svg width="36" height="36" viewBox="0 0 36 36" className="block">
+        <circle cx="18" cy="18" r={r} fill="none" stroke="#848177" strokeWidth="1" />
+        <circle
+          cx="18"
+          cy="18"
+          r={r}
+          fill="none"
+          stroke="#904a30"
+          strokeWidth="2"
+          strokeDasharray={`${C} ${C}`}
+          strokeDashoffset={inView ? C * (1 - pct) : C}
+          strokeLinecap="butt"
+          transform="rotate(-90 18 18)"
+          style={{
+            opacity: pct === 0 ? 0 : 1,
+            transition: `stroke-dashoffset 1100ms cubic-bezier(0.22, 1, 0.36, 1) ${Math.min(index, 4) * 90}ms`,
+          }}
+        />
+      </svg>
+    </span>
+  );
+}
 
 export default function HomePage({ field }) {
   usePageTitle('Quietfield — twenty-five small social situations');
@@ -106,7 +177,7 @@ export default function HomePage({ field }) {
           Index // Five life stages
         </h2>
         <ul className="mt-8 grid grid-cols-1 gap-px bg-[#848177]/20 sm:grid-cols-2 lg:grid-cols-3">
-          {STAGES.map((stage) => {
+          {STAGES.map((stage, stageIndex) => {
             const stageScenarios = scenariosForStage(stage.id);
             const done = stageScenarios.filter((s) =>
               field.completed.includes(s.id),
@@ -121,7 +192,7 @@ export default function HomePage({ field }) {
                     'border border-transparent hover:border-[#904A30] focus-visible:border-[#904A30] focus-visible:outline-none',
                   ].join(' ')}
                 >
-                  <StageRing done={done} total={stageScenarios.length} />
+                  <InViewStageRing done={done} total={stageScenarios.length} index={stageIndex} />
                   <span className="block">
                     <span className="block font-mono text-sm font-bold uppercase tracking-[0.18em] text-qf-tan">
                       Stage {stage.numeral}
