@@ -14,15 +14,18 @@ import Auth from './components/Auth';
 import { HushProvider } from './lib/hush';
 import { loadField, recordDecision } from './lib/progress';
 import { supabase, SUPABASE_CONFIGURED } from './lib/supabaseClient';
-import { CLOSING_LINE } from './lib/scenarios';
+import { CLOSING_LINE, STUDIO_CREDIT } from './lib/scenarios';
 import AboutPage from './pages/AboutPage';
+import ComparePage from './pages/ComparePage';
 import ContactPage from './pages/ContactPage';
 import HomePage from './pages/HomePage';
 import LifeStageIndexPage from './pages/LifeStageIndexPage';
 import NotFoundPage from './pages/NotFoundPage';
 import ProfilePage from './pages/ProfilePage';
 import ScenarioPage from './pages/ScenarioPage';
+import StageCompletePage from './pages/StageCompletePage';
 import ThankYouPage from './pages/ThankYouPage';
+import TogetherPage from './pages/TogetherPage';
 
 const EMPTY_FIELD = { completed: [], choices: {}, counts: { reactive: 0, avoidant: 0, clarifying: 0, regulated: 0 } };
 
@@ -115,6 +118,17 @@ function Shell() {
                 )
               }
             />
+            {/* Stage-complete interstitial: same gate as the stage routes. */}
+            <Route
+              path="/stage/:stageId/complete"
+              element={
+                SUPABASE_CONFIGURED && !session ? (
+                  <Gate />
+                ) : (
+                  <StageCompletePage field={field} />
+                )
+              }
+            />
             <Route
               path="/scenario/:id"
               element={
@@ -137,6 +151,11 @@ function Shell() {
             />
             <Route path="/done" element={<ThankYouPage field={field} />} />
 
+            {/* Walk-together invitations open for anyone - never behind the
+                Supabase gate; the gate still protects /scenario as today. */}
+            <Route path="/compare/:code" element={<ComparePage field={field} />} />
+            <Route path="/together" element={<TogetherPage field={field} />} />
+
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </div>
@@ -154,7 +173,7 @@ function Shell() {
             {CLOSING_LINE}
           </p>
           <p className="font-mono text-sm font-bold uppercase tracking-[0.18em] text-qf-tan">
-            Quietfield · A Masterfield Labs project
+            {STUDIO_CREDIT}
           </p>
         </div>
       </footer>

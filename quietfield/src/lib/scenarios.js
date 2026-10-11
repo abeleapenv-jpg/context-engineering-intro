@@ -22,6 +22,9 @@ export const FIVE_STEPS = 'OBSERVE. PAUSE. QUESTION. CONTEXTUALIZE. CHOOSE.';
 export const CLOSING_LINE =
   'You cannot always control what other people do. You can control how carefully you observe, interpret, communicate, and choose.';
 
+/** Studio credit exactly as the footer shows it (one source of truth). */
+export const STUDIO_CREDIT = 'Quietfield · A Masterfield Labs project';;
+
 export function scenarioById(id) {
   return SCENARIOS.find((s) => s.id === id) ?? null;
 }
@@ -71,4 +74,42 @@ export function fieldNotesSentence(archetypeCounts) {
   if (entries.length === 0) return null;
   entries.sort((a, b) => b[1] - a[1]);
   return ARCHETYPE_NOTES[entries[0][0]] ?? null;
+}
+
+/** Display order for archetype tallies (stage interstitial, field card). */
+export const ARCHETYPE_ORDER = ['reactive', 'avoidant', 'clarifying', 'regulated'];
+
+/**
+ * Stage-local archetype counts (stage-complete interstitial): how many of
+ * this stage's decided choices fell into each archetype, read from the same
+ * field.choices map the record pages use.
+ */
+export function archetypeCountsForStage(stageId, choices) {
+  const counts = { reactive: 0, avoidant: 0, clarifying: 0, regulated: 0 };
+  for (const scenario of scenariosForStage(stageId)) {
+    const key = choices?.[scenario.id];
+    if (!key) continue;
+    const choice = choiceByKey(scenario, key);
+    if (choice) counts[choice.archetype] += 1;
+  }
+  return counts;
+}
+
+/*
+ * Same wording as ARCHETYPE_NOTES, rephrased from "Across the field" to
+ * "In this stage" (engagement Phase 2). The original map stays untouched.
+ */
+const STAGE_ARCHETYPE_NOTES = {
+  reactive: 'In this stage, you often moved first and learned from contact.',
+  avoidant: 'In this stage, you often stepped back, and watched the cost arrive later.',
+  clarifying: 'In this stage, you often asked before concluding; the question did most of the work.',
+  regulated: 'In this stage, you often held the pause, and let it carry the weight.',
+};
+
+/** Stage-local pattern sentence: same selection as fieldNotesSentence. */
+export function stageNotesSentence(stageCounts) {
+  const entries = Object.entries(stageCounts).filter(([, n]) => n > 0);
+  if (entries.length === 0) return null;
+  entries.sort((a, b) => b[1] - a[1]);
+  return STAGE_ARCHETYPE_NOTES[entries[0][0]] ?? null;
 }

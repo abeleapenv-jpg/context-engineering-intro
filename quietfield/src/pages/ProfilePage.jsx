@@ -2,9 +2,11 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import ProgressBar from '../components/ProgressBar';
+import InviteButton from '../components/InviteButton';
 import { supabase, SUPABASE_CONFIGURED } from '../lib/supabaseClient';
 import { clearLocalField } from '../lib/progress';
 import usePageTitle from '../lib/usePageTitle';
+import { readTheirChoices } from '../lib/walkCode';
 import { SCENARIOS, STAGES, choiceByKey, scenariosForStage } from '../lib/scenarios';
 
 /*
@@ -70,6 +72,20 @@ export default function ProfilePage({ session, field, refreshField }) {
           );
         })}
       </section>
+
+      {/* Walk-together (engagement Phase 3): invite under the progress
+          section; the compare view when this visitor has an invitation. */}
+      <InviteButton choices={field.choices} />
+      {readTheirChoices() !== null ? (
+        <p className="mt-6 font-mono text-sm font-bold uppercase tracking-[0.18em] text-qf-tan">
+          <Link
+            to="/together"
+            className="transition-colors duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:text-qf-cream focus-visible:text-qf-cream motion-reduce:transition-none"
+          >
+            See where you differed
+          </Link>
+        </p>
+      ) : null}
 
       <section className="mt-20">
         <h2 className="font-mono text-sm font-bold uppercase tracking-[0.18em] text-qf-tan">
